@@ -279,5 +279,22 @@ namespace ExpensesEF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spSummarizeExpenses_SubTipoGastosMensual", monthParameter, yearParameter);
         }
+    
+        public virtual int spGetInfoDiaMaxGastoMes(Nullable<int> ano, Nullable<int> mes, string usuario, ObjectParameter res)
+        {
+            var anoParameter = ano.HasValue ?
+                new ObjectParameter("Ano", ano) :
+                new ObjectParameter("Ano", typeof(int));
+    
+            var mesParameter = mes.HasValue ?
+                new ObjectParameter("Mes", mes) :
+                new ObjectParameter("Mes", typeof(int));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spGetInfoDiaMaxGastoMes", anoParameter, mesParameter, usuarioParameter, res);
+        }
     }
 }

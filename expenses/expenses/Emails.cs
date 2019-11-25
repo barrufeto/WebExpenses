@@ -148,6 +148,58 @@ namespace expenses
             return _Res;
         }
 
+        private string _GastoMaximoDia(SummaryTotal_Mensual _SummaryMensual, string _Usuari)
+        {
+            int i = 0;
+            string _Res = "";
+            Gasto _Gasto;
+            string idGasto;
+            string[] _infoDiaConMasGasto;
+            string[] _idsGastos;
+
+
+            var context = new ExpensesEF.Entities();
+            //Info del día on més s'ha gastat
+            System.Data.Entity.Core.Objects.ObjectParameter myInfoExpensesDay = new System.Data.Entity.Core.Objects.ObjectParameter("Res", typeof(string));
+            context.spGetInfoDiaMaxGastoMes(_SummaryMensual.Año, _SummaryMensual.Mes, _Usuari, myInfoExpensesDay);
+            _infoDiaConMasGasto = myInfoExpensesDay.Value.ToString().Split('|');
+
+            //Si el dia és >0 hi ha hagut un dia amb gasto màxim
+            if (int.Parse(_infoDiaConMasGasto[0]) > 0)
+                 {
+                  _Res += string.Format(Resources.Descripciones.mailDiaMasGasto, _infoDiaConMasGasto[0], _infoDiaConMasGasto[1]);
+
+                  _idsGastos = _infoDiaConMasGasto[2].Split(',');
+                  while (i < _idsGastos.Length)
+                    {
+                        idGasto = _idsGastos[i];
+                        _Gasto = context.Gasto.Where(x => x.idGasto.ToString() == idGasto).FirstOrDefault();
+                        i = i + 1;
+
+                        if (i==_idsGastos.Length)
+                            {
+                                 if (i==1)
+                                 {
+                                    _Res += _Gasto.Concepto;
+                                 }
+                                 else
+                                 {
+                                    _Res = _Res.Substring(0, _Res.Length - 2);
+                                    _Res += Resources.Descripciones.y + _Gasto.Concepto;
+                                 }
+                            }
+                        else
+                            {
+                               _Res += _Gasto.Concepto + ", ";
+                            }
+                    }
+                    _Res += ").";
+            }
+
+            return _Res;
+         }
+
+
         private string _GastoMedioMensual(SummaryTotal_Mensual _GastoMesAnterior, string _Usuari,int MesActual, Dates _Data2MesosEnrera)
         {
             string _Res = "";
@@ -192,7 +244,7 @@ namespace expenses
         {
             string _Res = "";
             var context = new ExpensesEF.Entities();
-            decimal _TotalAnualAcumulado, _TotalAnualAcumuladoAnyoAnterior, diferencia, valorDivActualMayor, valorDivActualMenor;
+            decimal _TotalAnualAcumulado, _TotalAnualAcumuladoAnyoAnterior, diferencia;
 
             try
             {
@@ -359,7 +411,7 @@ namespace expenses
         }
 
 
-        private string _CuerpoMesaje(ValuesEnvioEmail _Email)
+        private string _CuerpoMensaje(ValuesEnvioEmail _Email)
         {
             string _Res = "";
             var context = new ExpensesEF.Entities();
@@ -399,6 +451,7 @@ namespace expenses
                         _Res += _MejoraGastoRespecto2MesesAtras(_SummaryMensual, _SummaryMensual2MesosEnrera);
                         _Res += _VerMaximoGastoAnual(_SummaryMensual, _MaxGastoMensual);
                         _Res += _GastoMedioMensual(_SummaryMensual, _Usuari.Id, _SummaryMensual.Mes,_Data2MesosEnrera);
+                        _Res += _GastoMaximoDia(_SummaryMensual, _Usuari.Id);
                         _Res += _AhorroDelMes(_SummaryMensual, _SummaryMensual2MesosEnrera, _Usuari.Id);
                         _Res += _TiposGastos(_SummaryMensual, _Usuari.Id);
                         _Res += _GruposGastos(_SummaryMensual, _Usuari.Id);
@@ -443,7 +496,7 @@ namespace expenses
             msg.From = new MailAddress("info@expenses.com", "expenses", System.Text.Encoding.UTF8);
             msg.Subject = Resources.Descripciones.mailSubject;
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
-            msg.Body = _CuerpoMesaje(_Email);
+            msg.Body = _CuerpoMensaje(_Email);
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.IsBodyHtml = true;
 

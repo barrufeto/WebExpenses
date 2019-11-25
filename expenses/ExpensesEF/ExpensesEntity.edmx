@@ -1174,6 +1174,12 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <Parameter Name="month" Type="int" Mode="In" />
           <Parameter Name="year" Type="int" Mode="In" />
         </Function>
+        <Function Name="spGetInfoDiaMaxGastoMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ano" Type="int" Mode="In" />
+          <Parameter Name="Mes" Type="int" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="Res" Type="nvarchar" Mode="InOut" />
+        </Function>
         <Function Name="spGetMonthlyExpenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGasto" Type="nvarchar" Mode="In" />
           <Parameter Name="month" Type="int" Mode="In" />
@@ -1842,6 +1848,12 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
             <End Role="ValuesEnvioEmail" EntitySet="ValuesEnvioEmail" />
           </AssociationSet>
           <EntitySet Name="vst_Export_Gastos" EntityType="expensesModel.vst_Export_Gastos" />
+          <FunctionImport Name="spGetInfoDiaMaxGastoMes">
+            <Parameter Name="Ano" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Res" Mode="InOut" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -3627,6 +3639,7 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetInfoDiaMaxGastoMes" FunctionName="expensesModel.Store.spGetInfoDiaMaxGastoMes" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

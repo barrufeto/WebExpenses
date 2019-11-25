@@ -507,4 +507,10 @@
   <data name="Exportxls" xml:space="preserve">
     <value>Excel export current year expenses...</value>
   </data>
+  <data name="mailDiaMasGasto" xml:space="preserve">
+    <value>&amp;nbsp;As a curiosity, the day that was spent the most was the day {0} with a total of &lt;b&gt; {1} € &lt;/b&gt; (</value>
+  </data>
+  <data name="y" xml:space="preserve">
+    <value>&amp;nbsp;and&amp;nbsp;</value>
+  </data>
 </root>

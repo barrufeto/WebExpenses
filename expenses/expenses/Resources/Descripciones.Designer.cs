@@ -691,6 +691,15 @@ namespace expenses.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &amp;nbsp;Como curiosidad, el día en que más se gastó fue el día {0} con un total de &lt;b&gt;{1}€&lt;/b&gt; (.
+        /// </summary>
+        public static string mailDiaMasGasto {
+            get {
+                return ResourceManager.GetString("mailDiaMasGasto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Curiosamente, este mes tu gasto ha sido el mismo que el gasto medio mensual de todo el año..
         /// </summary>
         public static string mailGastoMedioMensualIgualMedia {
@@ -1218,6 +1227,15 @@ namespace expenses.Resources {
         public static string TipoPagoPorDefecto {
             get {
                 return ResourceManager.GetString("TipoPagoPorDefecto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &amp;nbsp;y&amp;nbsp;.
+        /// </summary>
+        public static string y {
+            get {
+                return ResourceManager.GetString("y", resourceCulture);
             }
         }
     }
