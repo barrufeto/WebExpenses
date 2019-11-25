@@ -1,0 +1,49 @@
+﻿@model experses.Models.ChartViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Chart",  FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+<div class="jumbotron">
+    <div class="row">
+     <div class="form-group">
+         <div class="col-md-4">
+            
+                 @Html.RadioButtonFor(m => m._TipoChart, 0, new { Checked = "checked" })
+                 @Html.Label(expenses.Resources.Descripciones.GraficoMesActual)
+                 <br />
+                 @Html.RadioButtonFor(m => m._TipoChart, 1)
+                 @Html.Label(expenses.Resources.Descripciones.GraficoAnyoActual)
+             
+
+         </div>
+        <div class="col-md-4">
+            @Html.RadioButtonFor(m => m._EstiloChart, 0, new { Checked = "checked" })
+            @Html.Label(expenses.Resources.Descripciones.ChartTypeBarras)
+
+            <br />
+
+            @Html.RadioButtonFor(m => m._EstiloChart,1)
+            @Html.Label(expenses.Resources.Descripciones.ChartTypePie)
+        </div>
+        <div class="col-md-4">&nbsp;</div>
+    </div>
+ </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <input type="submit" class="btn btn-primary" name="submitButton" value="@expenses.Resources.Descripciones.btnGenerarGrafico" />
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+    <div class="row">
+            <div class="col-md-12">
+                <img src="@Url.Action("GetChart",Model)" />
+            </div>
+    </div>
+
+    }
+

@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Text.RegularExpressions
+
+@{
+    System.Globalization.CultureInfo currentCulture;
+    var supportedCultures = expenses.CultureHelper.GetSwitchCultures(out currentCulture);
+    string currentCultureDisplayName = currentCulture.Parent.NativeName;
+
+
+
+    string uAg = Request.ServerVariables["HTTP_USER_AGENT"];
+    Regex regEx = new Regex(@"android|iphone|ipad|ipod|blackberry|symbianos", RegexOptions.IgnoreCase);
+    bool isMobile = regEx.IsMatch(uAg);
+
+
+}
+
+
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+
+            @if (!isMobile)
+            {
+                <li>
+                    <a nohref class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">@User.Identity.GetUserName() <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink(expenses.Resources.Descripciones.OpcCambiarPass, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
+
+
+                        @foreach (var culture in supportedCultures)
+                        {
+                            string url = Url.Action("SetPreferredCulture", "Culture", new { culture = culture.Name, returnUrl = Request.RawUrl });
+                            //string urlName = culture.Parent.NativeName;
+                            string Cult2Letters = culture.Parent.ToString(); ;
+
+                            if (culture.Name == currentCulture.Name)
+                            {
+                                <li class="active"><a href="@url"> <i class="fa fa-check"> @Cult2Letters  </i></a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@url">@Cult2Letters</a></li>
+                            }
+                        }
+                        <li class="divider"></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">@expenses.Resources.Descripciones.OpcCerraSession</a></li>
+                    </ul>
+                </li>
+            }
+            else
+            {
+
+                foreach (var culture in supportedCultures)
+                {
+                    string url = Url.Action("SetPreferredCulture", "Culture", new { culture = culture.Name, returnUrl = Request.RawUrl });
+                    //string urlName = culture.Parent.NativeName;
+                    string Cult2Letters = culture.Parent.ToString(); ;
+
+                    if (culture.Name != currentCulture.Name)
+                    {
+                        <li><a href="@url">@Cult2Letters</a></li>
+                    }
+                }
+                <li>@Html.ActionLink(expenses.Resources.Descripciones.OpcCambiarPass, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" }) </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">@expenses.Resources.Descripciones.OpcCerraSession</a></li>
+            }
+
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink(expenses.Resources.Descripciones.OpcRegistrarse, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(expenses.Resources.Descripciones.OpcLogin, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+

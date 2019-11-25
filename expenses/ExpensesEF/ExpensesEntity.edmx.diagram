@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f12c16ca804c4fb4be3e245f92100307" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="expensesModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="expensesModel.AspNetRoles" Width="1.5" PointX="3.75" PointY="15.5" />
+        <EntityTypeShape EntityType="expensesModel.AspNetUserClaims" Width="1.5" PointX="8.25" PointY="28.125" />
+        <EntityTypeShape EntityType="expensesModel.AspNetUserLogins" Width="1.5" PointX="8.25" PointY="12.125" />
+        <EntityTypeShape EntityType="expensesModel.AspNetUsers" Width="1.5" PointX="6" PointY="16.375" />
+        <EntityTypeShape EntityType="expensesModel.Gasto" Width="1.5" PointX="11.25" PointY="10.875" />
+        <EntityTypeShape EntityType="expensesModel.GastoRecurrente" Width="1.5" PointX="11.25" PointY="17.375" />
+        <EntityTypeShape EntityType="expensesModel.GrupoGasto" Width="1.5" PointX="0.75" PointY="18.25" />
+        <EntityTypeShape EntityType="expensesModel.Idiomas" Width="1.5" PointX="0.75" PointY="14" />
+        <EntityTypeShape EntityType="expensesModel.Periocidad" Width="1.5" PointX="9" PointY="31.625" />
+        <EntityTypeShape EntityType="expensesModel.PeriocidadTextosTraduccion" Width="1.5" PointX="11.25" PointY="25.75" />
+        <EntityTypeShape EntityType="expensesModel.SubTipoGasto" Width="1.5" PointX="9" PointY="8.125" />
+        <EntityTypeShape EntityType="expensesModel.SubTipoGastoTextosTraduccion" Width="1.5" PointX="14.25" PointY="11.5" />
+        <EntityTypeShape EntityType="expensesModel.Sueldo" Width="1.5" PointX="8.25" PointY="39.125" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorGrupoGasto" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorGrupoGasto_Mensual" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorTipoGasto" Width="1.5" PointX="8.25" PointY="18.25" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorTipoGasto_Mensual" Width="1.5" PointX="8.25" PointY="21.125" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorTipoPago" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorTipoPago_Mensual" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="expensesModel.SummaryRegalo" Width="1.5" PointX="8.25" PointY="36.625" />
+        <EntityTypeShape EntityType="expensesModel.SummaryRegalo_Mensual" Width="1.5" PointX="8.25" PointY="14.625" />
+        <EntityTypeShape EntityType="expensesModel.SummaryTotal_Mensual" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="expensesModel.TextosVarios" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="expensesModel.TipoGasto" Width="1.5" PointX="6.75" PointY="8" />
+        <EntityTypeShape EntityType="expensesModel.TipoGastoTextosTraduccion" Width="1.5" PointX="12" PointY="7.375" />
+        <EntityTypeShape EntityType="expensesModel.TipoPago" Width="1.5" PointX="9" PointY="25.125" />
+        <EntityTypeShape EntityType="expensesModel.AggregatedCounter" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="expensesModel.Hash" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="expensesModel.Job" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="expensesModel.JobParameter" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="expensesModel.JobQueue" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="expensesModel.List" Width="1.5" PointX="11.75" PointY="3.75" />
+        <EntityTypeShape EntityType="expensesModel.Schema" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="expensesModel.Server" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="expensesModel.Set" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="expensesModel.State" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="expensesModel.GrupoGastoTextosTraduccion" Width="1.5" PointX="3" PointY="18.375" />
+        <EntityTypeShape EntityType="expensesModel.TipoPagoTextosTraduccion" Width="1.5" PointX="11.25" PointY="22.375" />
+        <EntityTypeShape EntityType="expensesModel.Counter" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="expensesModel.vst_GastosRecurrentes" Width="1.5" PointX="13.75" PointY="14.75" />
+        <EntityTypeShape EntityType="expensesModel.vst_InOut" Width="1.5" PointX="14.75" PointY="6.75" />
+        <AssociationConnector Association="expensesModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="expensesModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="expensesModel.FK_AspNetUsers_GrupoGasto" />
+        <AssociationConnector Association="expensesModel.FK_Gasto_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_GastoRecurrente_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_Sueldo_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorTipoGasto_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorTipoGasto_Mensual_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_SummaryRegalo_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_SummaryRegalo_Mensual_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_Gasto_Gasto" />
+        <AssociationConnector Association="expensesModel.FK_Gasto_GrupoGasto" />
+        <AssociationConnector Association="expensesModel.FK_Gasto_SubTipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_Gasto_TipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_GastoRecurrente_Periocidad" />
+        <AssociationConnector Association="expensesModel.FK_GastoRecurrente_TipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_GastoRecurrente_TipoPago" />
+        <AssociationConnector Association="expensesModel.FK_GrupoGastoTextosTraduccion_GrupoGasto" />
+        <AssociationConnector Association="expensesModel.FK_GrupoGastoTextosTraduccion_Idiomas" />
+        <AssociationConnector Association="expensesModel.FK_PeriocidadTextosTraduccion_Idiomas" />
+        <AssociationConnector Association="expensesModel.FK_SubTipoGastoTextosTraduccion_Idiomas" />
+        <AssociationConnector Association="expensesModel.FK_TextosVarios_Idiomas" />
+        <AssociationConnector Association="expensesModel.FK_TipoGastoTextosTraduccion_Idiomas" />
+        <AssociationConnector Association="expensesModel.FK_TipoPagoTextosTraduccion_Idiomas" />
+        <AssociationConnector Association="expensesModel.FK_PeriocidadTextosTraduccion_Periocidad" />
+        <AssociationConnector Association="expensesModel.FK_SubTipoGasto_TipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_SubTipoGastoTextosTraduccion_SubTipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorTipoGasto_TipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorTipoGasto_Mensual_TipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_TipoGastoTextosTraduccion_TipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_TipoPagoTextosTraduccion_TipoPago" />
+        <AssociationConnector Association="expensesModel.FK_HangFire_JobParameter_Job" />
+        <AssociationConnector Association="expensesModel.FK_HangFire_State_Job" />
+        <AssociationConnector Association="expensesModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorSubTipoGasto" Width="1.5" PointX="16.25" PointY="14.375" />
+        <EntityTypeShape EntityType="expensesModel.SummaryPorSubTipoGasto_Mensual" Width="1.5" PointX="16.25" PointY="17.25" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorSubTipoGasto_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorSubTipoGasto_Mensual_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorSubTipoGasto_Mensual_SubTipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_SummaryPorSubTipoGasto_SubTipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_AspNetUsers_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_AspNetUsers_TipoPago" />
+        <EntityTypeShape EntityType="expensesModel.GastoCompartido" Width="1.5" PointX="13.5" PointY="20.5" />
+        <AssociationConnector Association="expensesModel.FK_GastoCompartido_Gasto" />
+        <AssociationConnector Association="expensesModel.FK_GastoCompartido_Gasto1" />
+        <EntityTypeShape EntityType="expensesModel.ValuesDefaultConcepto" Width="1.5" PointX="17.25" PointY="10.875" />
+        <AssociationConnector Association="expensesModel.FK_ValuesDefaultConcepto_AspNetUsers" />
+        <AssociationConnector Association="expensesModel.FK_ValuesDefaultConcepto_SubTipoGasto" />
+        <AssociationConnector Association="expensesModel.FK_ValuesDefaultConcepto_Idiomas" />
+        <EntityTypeShape EntityType="expensesModel.ValuesEnvioEmail" Width="1.5" PointX="5.375" PointY="11.75" />
+        <AssociationConnector Association="expensesModel.FK_ValuesEnvioEmail_Idiomas" />
+        <EntityTypeShape EntityType="expensesModel.vst_Export_Gastos" Width="1.5" PointX="16.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

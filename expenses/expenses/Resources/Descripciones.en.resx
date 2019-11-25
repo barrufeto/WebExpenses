@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="a" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="AboutDescripcion" xml:space="preserve">
+    <value>Little monthly expenses web....</value>
+  </data>
+  <data name="AddGastoConcepto" xml:space="preserve">
+    <value>Concept</value>
+  </data>
+  <data name="AddGastoFecha" xml:space="preserve">
+    <value>Date </value>
+  </data>
+  <data name="AddGastoGrupoGasto" xml:space="preserve">
+    <value>Expense Group</value>
+  </data>
+  <data name="AddGastoImporte" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="AddGastoTipoGasto" xml:space="preserve">
+    <value>Expense type</value>
+  </data>
+  <data name="AddGastoTipoMoneda" xml:space="preserve">
+    <value>Currency type</value>
+  </data>
+  <data name="AddGastoTipoPago" xml:space="preserve">
+    <value>Payment type</value>
+  </data>
+  <data name="GastoMensual" xml:space="preserve">
+    <value>Monthly expense:</value>
+  </data>
+  <data name="GridGastoConcepto" xml:space="preserve">
+    <value>Concept</value>
+  </data>
+  <data name="GridGastoFecha" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="GridGastoImporte" xml:space="preserve">
+    <value>(€)</value>
+  </data>
+  <data name="GridTipoGasto" xml:space="preserve">
+    <value>Expense type</value>
+  </data>
+  <data name="ImgNewGasto" xml:space="preserve">
+    <value>Add new expense</value>
+  </data>
+  <data name="MyApp" xml:space="preserve">
+    <value>Expenses v1.0</value>
+  </data>
+  <data name="MyAppAcercaDe" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="MyAppContacto" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="MyAppIniciarSession" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="MyAppInicio" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="MyAppRegistrarse" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="PopUpAddGasto" xml:space="preserve">
+    <value>New Expense</value>
+  </data>
+  <data name="PropTipoGasto" xml:space="preserve">
+    <value>Expense type</value>
+  </data>
+  <data name="GastoMesAnterior" xml:space="preserve">
+    <value>Last month expense:</value>
+  </data>
+  <data name="HomeNoAutentificadoLinea1" xml:space="preserve">
+    <value>Expenses is an expense management application adapted to mobile devices and easy to use.</value>
+  </data>
+  <data name="HomeNoAutentificadoTextoGrupo1" xml:space="preserve">
+    <value>Ease to manage your expenses with very few clicks. You can categorize an expense among its different types, add it to an expense group ... and from anywhere. Never registering an expense had been so easy.</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnOK" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="GraficoAnyoActual" xml:space="preserve">
+    <value>Current acumulated year graph</value>
+  </data>
+  <data name="GraficoMesActual" xml:space="preserve">
+    <value>Current month graph</value>
+  </data>
+  <data name="CharEstiloGrafico" xml:space="preserve">
+    <value>Graph's style</value>
+  </data>
+  <data name="ChartTipoGrafico" xml:space="preserve">
+    <value>Graph's type to generate</value>
+  </data>
+  <data name="ImgStats" xml:space="preserve">
+    <value>Graphs</value>
+  </data>
+  <data name="btnGenerarGrafico" xml:space="preserve">
+    <value>Generate Graph</value>
+  </data>
+  <data name="ChartTypeBarras" xml:space="preserve">
+    <value>Columns</value>
+  </data>
+  <data name="ChartTypePie" xml:space="preserve">
+    <value>Pie</value>
+  </data>
+  <data name="HomeNoAutentificadoTextoGrupo2" xml:space="preserve">
+    <value>Possibility of generating graphs with the expenses of the month and the year in a simple way. This way you will be able to know, at all times and graphically, how the money has been spent.</value>
+  </data>
+  <data name="HomeNoAutentificadoTituloGrupo2" xml:space="preserve">
+    <value>Graphs</value>
+  </data>
+  <data name="HomeNoAutentificadoTituloGrupo1" xml:space="preserve">
+    <value>Expenses</value>
+  </data>
+  <data name="OpcCambiarPass" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="OpcCerraSession" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="OpcLogin" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="OpcRegistrarse" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="btnAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="btnModificar" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="GastoMensualTarjeta" xml:space="preserve">
+    <value>Next credit card bill:</value>
+  </data>
+  <data name="GastoMensualTarjetaExplicacion" xml:space="preserve">
+    <value>Expenses from 20 of the previous month to 20 of the current month hecho con tarjeta de crédito with the credit card</value>
+  </data>
+  <data name="ImgNewGastoRecurrente" xml:space="preserve">
+    <value>Add new scheduled expense</value>
+  </data>
+  <data name="ManageCambiarConf" xml:space="preserve">
+    <value>Change account's configuration</value>
+  </data>
+  <data name="ManageMiPerfil" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="ManageChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ManageCreatePassword" xml:space="preserve">
+    <value>Create Password</value>
+  </data>
+  <data name="ManageEnableColorGastoRecurrenteGrid" xml:space="preserve">
+    <value>Colours for scheduled expenses</value>
+  </data>
+  <data name="ManagePassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="Si" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="btnUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ManageEnableVerTpcvsMesAnterior" xml:space="preserve">
+    <value>Enable % vs previous month</value>
+  </data>
+  <data name="AddGastoActivo" xml:space="preserve">
+    <value>Active Expense</value>
+  </data>
+  <data name="AddGastoComputable" xml:space="preserve">
+    <value>Computable expense</value>
+  </data>
+  <data name="AddGastoPeriodicidad" xml:space="preserve">
+    <value>Periodicity</value>
+  </data>
+  <data name="ModalGastoRecurrenteTitulo" xml:space="preserve">
+    <value>New periodic expense</value>
+  </data>
+  <data name="msgEliminarDelFin" xml:space="preserve">
+    <value>"?</value>
+  </data>
+  <data name="msgEliminarDelInicio" xml:space="preserve">
+    <value>Are you sure you want to delete the expense "</value>
+  </data>
+  <data name="myModalDelTitle" xml:space="preserve">
+    <value>Delete a Recurrent expense</value>
+  </data>
+  <data name="btnEliminar" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ModalGastoRecurrenteTituloEdit" xml:space="preserve">
+    <value>Recurrent expense update</value>
+  </data>
+  <data name="GastoMensualPeriodico" xml:space="preserve">
+    <value>Periodic monthly expenses:</value>
+  </data>
+  <data name="myModalDelGastoTitle" xml:space="preserve">
+    <value>Delete an expense</value>
+  </data>
+  <data name="myModalVerGastoTitle" xml:space="preserve">
+    <value>View an expense</value>
+  </data>
+  <data name="btnVolver" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ManageChangeSueldo" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="ManageSueldos" xml:space="preserve">
+    <value>Economical Management</value>
+  </data>
+  <data name="Abril" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="Agosto" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="Diciembre" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="Enero" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="Febrero" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="Julio" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="Junio" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="Marzo" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="Mayo" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="Noviembre" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="Octubre" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="Septiembre" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="SueldoBrutoAnual" xml:space="preserve">
+    <value>Anual Raw Salary</value>
+  </data>
+  <data name="AhorroMensualPrevisto" xml:space="preserve">
+    <value>Monthly savings planned:</value>
+  </data>
+  <data name="ModalDineroTitulo" xml:space="preserve">
+    <value>Economical management</value>
+  </data>
+  <data name="AddGastoSubTipoGasto" xml:space="preserve">
+    <value>Expense subtype</value>
+  </data>
+  <data name="HomeNoAutentificadoTextoGrupo3" xml:space="preserve">
+    <value>Expenses, from your programmed expenses and a powerful IA engine offers you the possibility to see a forecast of expenses.</value>
+  </data>
+  <data name="HomeNoAutentificadoTituloGrupo3" xml:space="preserve">
+    <value>Forecast Expenses</value>
+  </data>
+  <data name="ManageEnableVerSinGastosRecurrentes" xml:space="preserve">
+    <value>Expenses with recurrents</value>
+  </data>
+  <data name="AddGastoGrupoGastodefecto" xml:space="preserve">
+    <value>Default Expense Group</value>
+  </data>
+  <data name="GridTextoABuscar" xml:space="preserve">
+    <value>Search text</value>
+  </data>
+  <data name="EsRegalo" xml:space="preserve">
+    <value>Is a gift?</value>
+  </data>
+  <data name="TipoPagoPorDefecto" xml:space="preserve">
+    <value>Default payment type</value>
+  </data>
+  <data name="AddGastoGastoCompartido" xml:space="preserve">
+    <value>Shared Expense</value>
+  </data>
+  <data name="AddGastoGastoCompartidoPersona" xml:space="preserve">
+    <value>User who shares the expense with</value>
+  </data>
+  <data name="mailAhorroMesAnterior" xml:space="preserve">
+    <value>&lt;br/&gt;The total saved the previous month is: &lt;b&gt;{0} &lt;/b&gt;€. &amp;nbsp;</value>
+  </data>
+  <data name="mailBottom" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;br/&gt;This email has been generated automatically. Please do not reply to this email.</value>
+  </data>
+  <data name="mailGastoRespecto2MesesAtrasIgual" xml:space="preserve">
+    <value>Incredibly, regarding the expense of two months ago you have spent the same.</value>
+  </data>
+  <data name="mailGastoRespecto2MesesAtrasMas" xml:space="preserve">
+    <value>This has meant an increase in spending by &lt;b&gt; {0}€ &lt;/b&gt; (approximately &lt;b&gt; {1}% more&lt;/b&gt;) compared to {2}.</value>
+  </data>
+  <data name="mailGastoRespecto2MesesAtrasMenos" xml:space="preserve">
+    <value>This has meant a decrease in spending by &lt;b&gt; {0}€ &lt;/b&gt; (approximately &lt;b&gt; {1}% less&lt;/b&gt;) compared to {2}.</value>
+  </data>
+  <data name="mailLinea1" xml:space="preserve">
+    <value>Dear &amp;nbsp;&lt;b&gt;{0}&lt;/b&gt;: &lt;br/&gt;</value>
+  </data>
+  <data name="mailMaximoGastadoporMes" xml:space="preserve">
+    <value>At the moment, this month of {0} is the month you have spent the most throughout the year.</value>
+  </data>
+  <data name="mailRegaloMesAnterior" xml:space="preserve">
+    <value>&lt;br/&gt; The total expenses in gift for the previous month is: &lt;b&gt; {0} &lt;/b&gt;€.&amp;nbsp;</value>
+  </data>
+  <data name="mailSubject" xml:space="preserve">
+    <value>Expenses: Summary of monthly activity</value>
+  </data>
+  <data name="mailTotalGastadoMesAnterior" xml:space="preserve">
+    <value>&lt;br/&gt; The total spent in {0} is &lt;b&gt; {1}&lt;/b&gt;€.&amp;nbsp;</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mailGastoMedioMensualIgualMedia" xml:space="preserve">
+    <value>Interestingly, this month your spending has been the same as the average monthly expense for the whole year.</value>
+  </data>
+  <data name="mailGastoMedioMensualMayorMedia" xml:space="preserve">
+    <value>Taking into account that your average monthly expenditure is &lt;b&gt; {0}€ &lt;/b&gt;, this month you have spent &lt;b&gt; {1}€ &lt;/b&gt; more, unfortunately a &lt;b&gt; {2}% &lt;/b&gt; above the monthly average.</value>
+  </data>
+  <data name="mailGastoMedioMensualMenorMedia" xml:space="preserve">
+    <value>Taking into account that your average monthly expenditure is &lt;b&gt; {0}€ &lt;/b&gt;, this past month you have spent &lt;b&gt; {1} € &lt;/b&gt; less, being a &lt;b&gt; {2 }% &lt;/b&gt; below the monthly average.</value>
+  </data>
+  <data name="mailNoGasto" xml:space="preserve">
+    <value>This month you have not made any expenses.</value>
+  </data>
+  <data name="mailTipoGastoCabecera" xml:space="preserve">
+    <value>&lt;br&gt; &lt;br&gt; Regarding the different types of expenses of {0}, these have been: &lt;br&gt; &lt;br&gt;</value>
+  </data>
+  <data name="mailTotalGastado" xml:space="preserve">
+    <value>&lt;br/&gt; Finally, indicate that the total spent during this year is &lt;b&gt; {0}€ &lt;/b&gt;.</value>
+  </data>
+  <data name="mailTotalGastadoAnyoAnteriorIgual" xml:space="preserve">
+    <value>Finally, indicate that you have managed to maintain the same accumulated expense as last year, being the two of {0}€.</value>
+  </data>
+  <data name="mailTotalGastadoAnyoAnteriorMas" xml:space="preserve">
+    <value>&lt;br/&gt; Finally, indicate that the total spent during this year is &lt;b&gt; {0}€ &lt;/b&gt; while last year, for this date, the expense was &lt;b&gt; {1}€ &lt;/b&gt; (&lt;b&gt; {2}€ &lt;/b&gt; more).</value>
+  </data>
+  <data name="mailTotalGastadoAnyoAnteriorMenos" xml:space="preserve">
+    <value>&lt;br/&gt; Finally, indicate that the total spent during this year is &lt;b&gt; {0}€ &lt;/b&gt; while last year, for this date, the expense was &lt;b&gt; {1}€ &lt;/b&gt; (&lt;b&gt; {2}€ &lt;/b&gt; less).</value>
+  </data>
+  <data name="mailGrupoGastos" xml:space="preserve">
+    <value>&lt;br/&gt; On this total, we have {0} different expense groups:&amp;nbsp;</value>
+  </data>
+  <data name="mailGrupoGastosResto" xml:space="preserve">
+    <value>&amp;nbsp;and the rest (&lt;b&gt; {0}€ &lt;/b&gt;) &lt;br/&gt;</value>
+  </data>
+  <data name="mailNoGrupoGasto" xml:space="preserve">
+    <value>&lt;br/&gt; No expense has been associated with any specific expense group. &lt;br/&gt;</value>
+  </data>
+  <data name="mailAhorroMesIgual" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;br/&gt;Regarding the monthly savings, this month, according to the savings defined in Expenses, you have not saved anything, although you have not lowered your checking account. It must be recognized, it has its merit to adjust so much.</value>
+  </data>
+  <data name="mailAhorroMesMayor" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;br/&gt;Regarding the monthly savings, this month according to the savings defined in Expenses you have managed to save &lt;b&gt; {0} € &lt;/b&gt;.</value>
+  </data>
+  <data name="mailAhorroMesMayorY2MesesMayor" xml:space="preserve">
+    <value>&amp;nbsp;Also last month of {0} you also saved {1}.</value>
+  </data>
+  <data name="mailAhorroMesMayorY2MesesMenorOIgual" xml:space="preserve">
+    <value>&amp;nbsp;You have also managed to save after the past {0} spent &lt;b&gt; {1} € &lt;/b&gt; more. Congratulations, we must continue in this direction.</value>
+  </data>
+  <data name="mailAhorroMesMenor" xml:space="preserve">
+    <value>&lt;br/&gt;&lt;br/&gt;Regarding the monthly savings, this month according to the savings defined in Expenses you have not saved anything. In fact, you have spent &lt;b&gt; {0} € &lt;/b&gt; more than what you entered.</value>
+  </data>
+  <data name="mailAhorroMesMenorY2MesesMayor" xml:space="preserve">
+    <value>&amp;nbsp;Above you have gone from saving, not saving.</value>
+  </data>
+  <data name="mailAhorroMesMenorY2MesesMenorOIgual" xml:space="preserve">
+    <value>&amp;nbsp;On top, you have not been saving for at least 2 months. We should make a small effort and change this trend.</value>
+  </data>
+  <data name="AddGastoValoracion" xml:space="preserve">
+    <value>Assessment</value>
+  </data>
+  <data name="Exportxls" xml:space="preserve">
+    <value>Excel export current year expenses...</value>
+  </data>
+</root>

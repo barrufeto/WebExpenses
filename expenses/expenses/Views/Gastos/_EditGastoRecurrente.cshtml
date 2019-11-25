@@ -1,0 +1,236 @@
+﻿@model experses.Models.GastosRecurrenteViewModels
+
+@Html.AntiForgeryToken()
+
+@if (ViewBag.Message != null)
+{
+    <span class="text-success">@ViewBag.Message</span>
+}
+
+
+
+<span class="alert-danger">
+    @Html.ValidationSummary()
+</span>
+
+@Html.Hidden("hidden-ide", "")
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.AddGastoTipoGasto, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            <select class="form-control" id="TiposGastoEdit" name="TiposGastoEdit" disabled="true"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.AddGastoSubTipoGasto, new { @class = "control-label" })</div>
+        <div class="col-md-8"> @Html.TextBox("txtSubTipoGasto", "", new { @class = "form-control", id = "ImporteSubTipo", @readonly = "readonly" })</div> 
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.AddGastoTipoPago, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            <select class="form-control" id="TiposPagoEdit" name="TiposPagoEdit"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">@Html.LabelFor(m => m.Concepto, @expenses.Resources.Descripciones.AddGastoConcepto, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBoxFor(m => m.Concepto, new { @class = "form-control", id = "conceptoEdit" })</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">@Html.LabelFor(m => m.Importe, @expenses.Resources.Descripciones.AddGastoImporte, new { @class = "control-label" })</div>
+        <div class="col-md-8"> @Html.TextBox("txtImporte", "1", new { @class = "form-control", id = "ImporteEdit" })</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"> @Html.LabelFor(m => m._idTipoRecurrencia, @expenses.Resources.Descripciones.AddGastoPeriodicidad, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            <select class="form-control" id="TipoPeriodicidadEdit" name="TipoPeriodicidadEdit"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"> @Html.LabelFor(m => m.GastoActivo, @expenses.Resources.Descripciones.AddGastoActivo, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            @Html.RadioButtonFor(m => m.GastoActivo, "true", new { id = "ActivoEditSI" })
+            @Html.Label(@expenses.Resources.Descripciones.Si)
+
+            @Html.RadioButtonFor(m => m.GastoActivo, "false", new { id = "ActivoEditNO" })
+            @Html.Label(@expenses.Resources.Descripciones.NO)
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"> @Html.LabelFor(m => m.GastoComputable, @expenses.Resources.Descripciones.AddGastoComputable, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+
+            @Html.RadioButtonFor(m => m.GastoComputable, "true", new { id = "ComputableEditSI" })
+            @Html.Label(@expenses.Resources.Descripciones.Si)
+
+            @Html.RadioButtonFor(m => m.GastoComputable, "false", new { id = "ComputableEditNO" })
+            @Html.Label(@expenses.Resources.Descripciones.NO)
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        // data-* attributes to scan when populating modal values
+        var ATTRIBUTESEdit = ['id', 'datos'];
+
+
+
+        $('[data-toggle="modal"]').on('click', function (e) {
+            // convert target (e.g. the button) to jquery object
+            var $target = $(e.target);
+            // modal targeted by the button
+            var modalSelector = $target.data('target');
+            var arrayOfValuesEdit;
+            // iterate over each possible data-* attribute
+            ATTRIBUTESEdit.forEach(function (attributeName) {
+                // retrieve the dom element corresponding to current attribute
+                var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
+                var dataValue = $target.data(attributeName);
+
+                // if the attribute value is empty, $target.data() will return undefined.
+                // In JS boolean expressions return operands and are not coerced into
+                // booleans. That way is dataValue is undefined, the left part of the following
+                // Boolean expression evaluate to false and the empty string will be returned
+                $modalAttribute.text(dataValue || '');
+
+
+
+                if (attributeName == 'id') {
+                    $("#hidden-ide").val(dataValue);
+                }
+
+                if (attributeName == 'datos') {
+                    arrayOfValuesEdit = dataValue.split("|");
+                    $('#conceptoEdit').val(arrayOfValuesEdit[0]);
+                    $('#TiposPagoEdit').val(arrayOfValuesEdit[1]);
+                    $('#TiposGastoEdit').val(arrayOfValuesEdit[2]);
+                    $('#TipoPeriodicidadEdit').val(arrayOfValuesEdit[3]);
+                    $('#ImporteEdit').val(arrayOfValuesEdit[4]);
+
+                    if (arrayOfValuesEdit[6] == '1') { $('#ActivoEditSI').prop("checked", true); }
+                    else { $('#ActivoEditNO').prop("checked", true); }
+
+                    if (arrayOfValuesEdit[5] == 'True') { $('#ComputableEditSI').prop("checked", true); }
+                    else { $('#ComputableEditNO').prop("checked", true); }
+
+                    $('#ImporteSubTipo').val(arrayOfValuesEdit[7]);
+                }
+
+            });
+
+        });
+
+       
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Gastos/getTiposGasto",
+                data: "{}",
+                success: function (data) {
+                    var s; //= '<option value="-1">Please Select a Department</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idTipoGesto + '">' + data[i].NombreTipoGasto + '</option>';
+                    }
+                    $("#TiposGastoEdit").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "GetSubTiposTipo",
+                data: { Id: $('#TiposGasto').val() },
+                
+                success: function (data) {
+                    var s; //= '<option value="-1">Please Select a Department</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idPeriodicidad + '">' + data[i].NombrePeriodicidad + '</option>';
+                    }
+                    $("#TipoPeriodicidadEdit").html(s);
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Gastos/getTipoPeriocidad",
+                data: "{}",
+                success: function (data) {
+                    var s; //= '<option value="-1">Please Select a Department</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idPeriodicidad + '">' + data[i].NombrePeriodicidad + '</option>';
+                    }
+                    $("#TipoPeriodicidadEdit").html(s);
+                }
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Gastos/getTiposPago",
+                data: "{}",
+                success: function (data) {
+                    var s;
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idTipoPago + '">' + data[i].NombreTipoPago + '</option>';
+                    }
+                    $("#TiposPagoEdit").html(s);
+                }
+            });
+        });
+
+
+        $("#ImporteEdit").keypress(function (e) {
+            //if not number display error message
+
+            if (e.which != 8 && e.which != 44 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("only number allowed").show().fadeOut("slow");
+                return false;
+            }
+        });
+
+
+
+
+    </script>
+

@@ -1,0 +1,150 @@
+﻿@model experses.Models.GastosViewModels
+
+@{
+    /**/
+
+    /**/
+
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Ver", "Gastos", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    @Html.AntiForgeryToken()
+    <br />
+    <br />
+    <br />
+
+    @Html.ValidationSummary(false, "", new { @class = "error" })
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+
+                <div class="col-md-2">@Html.LabelFor(m => m._idSelectedGrupoGasto, @expenses.Resources.Descripciones.AddGastoGrupoGasto, htmlAttributes: new { @class = "control-label" })</div>
+                <div class="col-md-4">@Html.TextBoxFor(m => m._DescripcionGrupoGasto, new { @class = "form-control", @readonly = "readonly" })</div>
+                <div class="col-md-2">@Html.LabelFor(m => m._idSelectedGasto, @expenses.Resources.Descripciones.AddGastoTipoGasto, htmlAttributes: new { @class = "control-label" })</div>
+                <div class="col-md-4">@Html.TextBoxFor(m => m._DescripcionTipoGasto, new { @class = "form-control", @readonly = "readonly" })</div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">@Html.Label(expenses.Resources.Descripciones.AddGastoSubTipoGasto, htmlAttributes: new { @class = "control-label" })</div>
+                <div class="col-md-4"> @Html.TextBoxFor(m => m._DescripcionSubTipoGasto, new { @class = "form-control", @readonly = "readonly" })</div>
+                <div class="col-md-2"> @Html.LabelFor(m => m.EsRegalo, @expenses.Resources.Descripciones.EsRegalo, new { @class = "control-label" })</div>
+                <div class="col-md-4">@Html.CheckBoxFor(m => m.EsRegalo, new { @disabled = "disabled" })</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">@Html.LabelFor(m => m.Concepto, @expenses.Resources.Descripciones.AddGastoConcepto, new { @class = "control-label" })</div>
+                <div class="col-md-4">@Html.TextBoxFor(m => m.Concepto, new { @class = "form-control", @readonly = "readonly" })</div>
+                <div class="col-md-2">@Html.LabelFor(m => m.Fecha, @expenses.Resources.Descripciones.AddGastoFecha, new { @Value = Model.Fecha.ToString("d"), @class = "control-label" })</div>
+                <div class="col-md-4">@Html.TextBoxFor(m => m.Fecha, Model._FormatoFecha, new { @class = "form-control", @readonly = "readonly" })</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.Importe, @expenses.Resources.Descripciones.AddGastoImporte, new { @class = "control-label" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Importe, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">@Html.LabelFor(m => m._idSelectedTipoPagoGasto, @expenses.Resources.Descripciones.AddGastoTipoPago, new { @class = "control-label" })</div>
+                <div class="col-md-4">
+                    @foreach (var rb in Model._TipoPagoList)
+                    {
+                        <div>
+                            @Html.RadioButtonFor(m => m._idSelectedTipoPagoGasto, rb.idTipoPago, new { @disabled = "disabled" })
+                            @Html.Label(rb.Descripcion)
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">@Html.Label(@expenses.Resources.Descripciones.AddGastoGastoCompartido, new { @class = "control-label" })</div>
+                <div class="col-md-4">@Html.CheckBoxFor(m => m.EsCompartido, new { @disabled = "disabled" })</div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">@Html.Label(expenses.Resources.Descripciones.AddGastoValoracion, htmlAttributes: new { @class = "control-label" })</div>
+                <div class="col-md-4">
+                    @Html.HiddenFor(x => x.Valoracion, new { id = "hdnSatisfaccion" })
+                    <img id="imagen1" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen2" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen3" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen4" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen5" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen6" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen7" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen8" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen9" src="~/Img/iconos/white_star24.png" />
+                    <img id="imagen10" src="~/Img/iconos/white_star24.png" />
+
+                </div>
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-4">&nbsp;</div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-xs-12"><input type="submit" class="btn btn-primary" name="submitButton" value="@expenses.Resources.Descripciones.btnVolver" /> </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+   
+
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            //window.onload
+            //window.onload = function () {
+            //    $.fn.myFunction($("#hdnSatisfaccion").val());
+            //};
+
+
+            $(window).ready(function () {
+                $.fn.myFunction($("#hdnSatisfaccion").val());
+            }); 
+
+
+
+            $.fn.myFunction = function (iStar) {
+                for (var i = 1; i <= 10; i++) {
+                    $('#imagen' + i).attr('src', '/Img/iconos/white_star24.png');
+                }
+                for (var i = 1; i <= iStar; i++) {
+                    $('#imagen' + i).attr('src', '/Img/iconos/grey_star24.png');
+                }
+                $("#hdnSatisfaccion").val(iStar);
+            }
+
+
+        });
+
+
+
+    </script>
+
+
+}
+

@@ -1,0 +1,201 @@
+﻿@model experses.Models.GastosRecurrenteViewModels
+
+@Html.AntiForgeryToken()
+
+@if (ViewBag.Message != null)
+{
+    <span class="text-success">@ViewBag.Message</span>
+}
+
+   
+
+<span class="alert-danger">
+    @Html.ValidationSummary()
+</span>
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.AddGastoTipoGasto, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            <select class="form-control" id="TiposGasto" name="TiposGasto"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.AddGastoSubTipoGasto, new { @class = "control-label" })</div>
+        <div class="col-md-8" id="subtypes"> <select id="ddlSubTipoGasto" name="IdSubType" class='form-control'></select> </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.AddGastoTipoPago, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            <select class="form-control" id="TiposPago" name="TiposPago"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">@Html.LabelFor(m => m.Concepto, @expenses.Resources.Descripciones.AddGastoConcepto, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBoxFor(m => m.Concepto, new { @class = "form-control" })</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">@Html.LabelFor(m => m.Importe, @expenses.Resources.Descripciones.AddGastoImporte, new { @class = "control-label" })</div>
+        <div class="col-md-8"> @Html.TextBox("txtImporte", "1", new { @class = "form-control", @type = "number", id = "txtImporte" })</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"> @Html.LabelFor(m => m._idTipoRecurrencia, @expenses.Resources.Descripciones.AddGastoPeriodicidad, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            <select class="form-control" id="TipoPeriodicidad" name="TipoPeriodicidad"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"> @Html.LabelFor(m => m.GastoActivo, @expenses.Resources.Descripciones.AddGastoActivo, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+            @Html.RadioButtonFor(m => m.GastoActivo, "true", new { @checked = "checked" })
+            @Html.Label(@expenses.Resources.Descripciones.Si)
+
+            @Html.RadioButtonFor(m => m.GastoActivo, "false")
+            @Html.Label(@expenses.Resources.Descripciones.NO)
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"> @Html.LabelFor(m => m.GastoComputable, @expenses.Resources.Descripciones.AddGastoComputable, new { @class = "control-label" })</div>
+        <div class="col-md-8">
+
+            @Html.RadioButtonFor(m => m.GastoComputable, "true", new { @checked = "checked" })
+            @Html.Label(@expenses.Resources.Descripciones.Si)
+
+            @Html.RadioButtonFor(m => m.GastoComputable, "false")
+            @Html.Label(@expenses.Resources.Descripciones.NO)
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+            window.onload = function(){
+               $.ajax({
+                        type: "GET",
+                        url: "/Gastos/getSubTiposTipoFirst",
+                        data: "{}",
+                        success: function (data) {
+                            var datos = "<select id='ddlSubTipoGasto' name='IdSubType' class = 'form-control'>";
+                            datos = datos + '<option value=""></option>';
+                            for (var i = 0; i < data.length; i++) {
+                                datos = datos + '<option value=' + data[i].idSubTipo + '>' + data[i].NombreSubTipo + '</option>';
+                            }
+                            datos = datos + '</select>';
+                            $('#subtypes').html(datos);
+                        }
+                    });
+            };
+           
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Gastos/getTiposGasto",
+                data: "{}",
+                success: function (data) {
+                    var s; //= '<option value="-1">Please Select a Department</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idTipoGesto + '">' + data[i].NombreTipoGasto + '</option>';
+                    }
+                    $("#TiposGasto").html(s);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Gastos/getTipoPeriocidad",
+                data: "{}",
+                success: function (data) {
+                    var s; //= '<option value="-1">Please Select a Department</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idPeriodicidad + '">' + data[i].NombrePeriodicidad + '</option>';
+                    }
+                    $("#TipoPeriodicidad").html(s);
+                }
+            });
+        });
+
+
+
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Gastos/getTiposPago",
+                data: "{}",
+                success: function (data) {
+                    var s;
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].idTipoPago + '">' + data[i].NombreTipoPago + '</option>';
+                    }
+                    $("#TiposPago").html(s);
+                }
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            $('#TiposGasto').change(function () {
+                $.ajax({
+                    type: "post",
+                    url: "GetSubTiposTipo",
+                    data: { Id: $('#TiposGasto').val() },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var datos = "<select id='ddlSubTipoGasto' name='IdSubType' class = 'form-control'>";
+                        datos = datos + '<option value=""></option>';
+                        for (var i = 0; i < data.length; i++) {
+                            datos = datos + '<option value=' + data[i].idSubTipo + '>' + data[i].NombreSubTipo + '</option>';
+                        }
+                        datos = datos + '</select>';
+                        $('#subtypes').html(datos);
+                    }
+                });
+            });
+        });
+
+
+        $("#txtImporte").keypress(function (e) {
+            //if not number display error message
+          
+            if (e.which != 8 && e.which != 44 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("only number allowed").show().fadeOut("slow");
+                return false;
+            }
+        });
+
+    </script>
+

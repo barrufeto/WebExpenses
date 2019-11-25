@@ -1,0 +1,67 @@
+﻿@Html.AntiForgeryToken()
+
+@if (ViewBag.Message != null)
+{
+    <span class="text-success">@ViewBag.Message</span>
+}
+
+
+@expenses.Resources.Descripciones.msgEliminarDelInicio<span id="modal-datos">CONCEPTO</span>@expenses.Resources.Descripciones.msgEliminarDelFin
+
+
+@Html.Hidden("hidden-idd", "-1")
+
+
+
+<script type="text/javascript">
+
+    // data-* attributes to scan when populating modal values
+    var ATTRIBUTESDel = ['id','datos'];
+
+
+   
+
+    $('[data-toggle="modal"]').on('click', function (e) {
+        // convert target (e.g. the button) to jquery object
+        var $target = $(e.target);
+        // modal targeted by the button
+        var modalSelector = $target.data('target');
+
+        
+       
+
+        // iterate over each possible data-* attribute
+        ATTRIBUTESDel.forEach(function (attributeName) {
+            // retrieve the dom element corresponding to current attribute
+            var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
+            var dataValue = $target.data(attributeName);
+
+            // if the attribute value is empty, $target.data() will return undefined.
+            // In JS boolean expressions return operands and are not coerced into
+            // booleans. That way is dataValue is undefined, the left part of the following
+            // Boolean expression evaluate to false and the empty string will be returned
+            $modalAttribute.text(dataValue || '');
+
+
+
+
+            if (attributeName == 'id')
+            {
+                
+                $("#hidden-idd").val(dataValue);
+            }
+
+
+            if (attributeName == 'datos') {
+                arrayOfValuesEdit = dataValue.split("|");
+                $('#modal-datos').val(arrayOfValuesEdit[0]);
+            }
+
+        });
+
+
+        //$("#hidden-id").val("aaa");
+        //$("#hidden-id").val($(".item span").text());
+
+    });
+</script>

@@ -1,0 +1,128 @@
+﻿@model expenses.Models.IndexViewModel
+@{
+    ViewBag.Title = "Gestionar";
+}
+
+<h2>@expenses.Resources.Descripciones.ManageMiPerfil</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>@expenses.Resources.Descripciones.ManageCambiarConf</h4>
+    <hr />
+
+    <script src="~/Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+    <!--
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    -->
+
+    @using (Html.BeginForm("UpdateUserOptions", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+    <div class="container">
+
+        <div class="row">
+            <div class="form-group">
+
+                <div class="col-md-2">
+                    @Html.Label(@expenses.Resources.Descripciones.ManagePassword)
+                </div>
+                <div class="col-md-3">
+                    [
+                    @if (Model.HasPassword)
+                    {
+                        @Html.ActionLink(@expenses.Resources.Descripciones.ManageChangePassword, "ChangePassword")
+                    }
+                    else
+                    {
+                        @Html.ActionLink(@expenses.Resources.Descripciones.ManageCreatePassword, "SetPassword")
+                    }
+                    ]
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.VerTpcGastovsMesAnterior, @expenses.Resources.Descripciones.ManageEnableVerTpcvsMesAnterior)
+                </div>
+                <div class="col-md-4">
+                    @Html.RadioButtonFor(m => m.VerTpcGastovsMesAnterior, true)
+                    @Html.Label(@expenses.Resources.Descripciones.Si)
+
+                    @Html.RadioButtonFor(m => m.VerTpcGastovsMesAnterior, false)
+                    @Html.Label(@expenses.Resources.Descripciones.NO)
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">@Html.LabelFor(m => m._idSelectedTipoPago, @expenses.Resources.Descripciones.TipoPagoPorDefecto, htmlAttributes: new { @class = "control-label" })</div>
+                <div class="col-md-3">@Html.DropDownListFor(Model => Model._idSelectedTipoPago, new SelectList(Model._TiposPagoTrad, "Value", "Text"), new { @class = "form-control" })</div>
+
+                <div class="col-md-3">
+                    @Html.LabelFor(m => m.VerGastosTodosOSinRecurrentes, @expenses.Resources.Descripciones.ManageEnableVerSinGastosRecurrentes)
+                </div>
+                <div class="col-md-4">
+                    @Html.RadioButtonFor(m => m.VerGastosTodosOSinRecurrentes, true)
+                    @Html.Label(@expenses.Resources.Descripciones.Si)
+
+                    @Html.RadioButtonFor(m => m.VerGastosTodosOSinRecurrentes, false)
+                    @Html.Label(@expenses.Resources.Descripciones.NO)
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">@Html.LabelFor(m => m._idSelectedGrupoGasto, @expenses.Resources.Descripciones.AddGastoGrupoGastodefecto, htmlAttributes: new { @class = "control-label" })</div>
+                <div class="col-md-3">@Html.DropDownListFor(Model => Model._idSelectedGrupoGasto, new SelectList(Model._GrupoGastosTrad, "Value", "Text"), new { @class = "form-control" })</div>
+                <div class="col-md-3">
+                    @Html.Label(@expenses.Resources.Descripciones.ManageSueldos)
+                </div>
+                <div class="col-md-4">
+                    <img src="~/Img/iconos/Money.png" style="cursor:hand;cursor:pointer" data-toggle="modal" data-target="#myModal" title="@expenses.Resources.Descripciones.ModalDineroTitulo" data-id="aa" data-datos="@Model.DatosSueldos">
+                </div>
+            </div>
+        </div>
+
+
+        <br />
+        <br />
+        <br />
+
+        <input type="submit" class="btn btn-primary" name="submitButton" value="@expenses.Resources.Descripciones.btnCancel" /> <input type="submit" class="btn btn-primary" name="submitButton" value="@expenses.Resources.Descripciones.btnUpdate" />
+
+    </div>
+    }
+</div>
+
+        @using (Ajax.BeginForm("UpdateSueldo", "Sueldos", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "frmSueldo" }))
+        {
+            <div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel"> @expenses.Resources.Descripciones.ModalDineroTitulo</h4>
+                            </div>
+                            <div class="modal-body" id="frmSueldo">
+                                @Html.Partial("../Sueldos/GestionSueldo")
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="@expenses.Resources.Descripciones.btnModificar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }

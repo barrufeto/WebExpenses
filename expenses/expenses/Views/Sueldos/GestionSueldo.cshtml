@@ -1,0 +1,166 @@
+﻿@Html.AntiForgeryToken()
+
+@if (ViewBag.Message != null)
+{
+    <span class="text-success">@ViewBag.Message</span>
+}
+
+
+
+<span class="alert-danger">
+    @Html.ValidationSummary()
+</span>
+
+@Html.Hidden("hidden-id", "11")
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.SueldoBrutoAnual, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtBruto", "", new { @class = "form-control", id = "ImporteBruto"})</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Enero, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtEnero", "", new { @class = "form-control", id = "ImporteEnero" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Febrero, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtFebrero", "", new { @class = "form-control", id = "ImporteFebrero" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Marzo, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtMarzo", "", new { @class = "form-control", id = "ImporteMarzo" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Abril, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtAbril", "", new { @class = "form-control", id = "ImporteAbril" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Mayo, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtMayo", "", new { @class = "form-control", id = "ImporteMayo" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Junio, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtJunio", "", new { @class = "form-control", id = "ImporteJunio" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Julio, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtJulio", "", new { @class = "form-control", id = "ImporteJulio" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Agosto, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtAgosto", "", new { @class = "form-control", id = "ImporteAgosto" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Septiembre, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtSeptiembre", "", new { @class = "form-control", id = "ImporteSeptiembre" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Octubre, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtOctubre", "", new { @class = "form-control", id = "ImporteOctubre" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Noviembre, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtNoviembre", "", new { @class = "form-control", id = "ImporteNoviembre" })</div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-4">@Html.Label(@expenses.Resources.Descripciones.Diciembre, new { @class = "control-label" })</div>
+        <div class="col-md-8">@Html.TextBox("txtDiciembre", "", new { @class = "form-control", id = "ImporteDiciembre" })</div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-md-12">&nbsp;</div>
+</div>
+
+
+<script type="text/javascript">
+
+    // data-* attributes to scan when populating modal values
+    var ATTRIBUTESEdit = ['id', 'datos'];
+
+
+
+    $('[data-toggle="modal"]').on('click', function (e) {
+        // convert target (e.g. the button) to jquery object
+        var $target = $(e.target);
+        // modal targeted by the button
+        var modalSelector = $target.data('target');
+        var arrayOfValuesEdit;
+        // iterate over each possible data-* attribute
+        ATTRIBUTESEdit.forEach(function (attributeName) {
+            // retrieve the dom element corresponding to current attribute
+            var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
+            var dataValue = $target.data(attributeName);
+
+            // if the attribute value is empty, $target.data() will return undefined.
+            // In JS boolean expressions return operands and are not coerced into
+            // booleans. That way is dataValue is undefined, the left part of the following
+            // Boolean expression evaluate to false and the empty string will be returned
+            $modalAttribute.text(dataValue || '');
+
+
+
+            //if (attributeName == 'id') {
+            //    $("#hidden-ide").val(dataValue);
+            //}
+
+            if (attributeName == 'datos') {
+                arrayOfValuesEdit = dataValue.split("|");
+                $('#ImporteBruto').val(arrayOfValuesEdit[0]);
+                $('#ImporteEnero').val(arrayOfValuesEdit[1]);
+                $('#ImporteFebrero').val(arrayOfValuesEdit[2]);
+                $('#ImporteMarzo').val(arrayOfValuesEdit[3]);
+                $('#ImporteAbril').val(arrayOfValuesEdit[4]);
+                $('#ImporteMayo').val(arrayOfValuesEdit[5]);
+                $('#ImporteJunio').val(arrayOfValuesEdit[6]);
+                $('#ImporteJulio').val(arrayOfValuesEdit[7]);
+                $('#ImporteAgosto').val(arrayOfValuesEdit[8]);
+                $('#ImporteSeptiembre').val(arrayOfValuesEdit[9]);
+                $('#ImporteOctubre').val(arrayOfValuesEdit[10]);
+                $('#ImporteNoviembre').val(arrayOfValuesEdit[11]);
+                $('#ImporteDiciembre').val(arrayOfValuesEdit[12]);
+
+            }
+
+        });
+
+    });
+
+
+    $("#ImporteBruto,#ImporteEnero,#ImporteFebrero,#ImporteMarzo,#ImporteAbril, #ImporteMayo, #ImporteJunio, #ImporteJulio, #ImporteAgosto, #ImporteSeptiembre, #ImporteOctubre, #ImporteNoviembre, #ImporteDiciembre").keypress(function (e) {
+        //if not number display error message
+        if (e.which != 8 && e.which != 44 && e.which != 46 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            $("#errmsg").html("only number allowed").show().fadeOut("slow");
+            return false;
+        }
+    });
+
+</script>
+
+

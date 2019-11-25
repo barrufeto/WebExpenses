@@ -1,0 +1,151 @@
+﻿@model experses.Models.HomeViewModels
+@{
+    ViewBag.Title = "IndexA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<br />
+
+<style type="text/css">
+    .SearchButton {
+        background: url(/Img/iconos/search.png) no-repeat;
+        cursor: pointer;
+        border: none;
+        width: 32px;
+        height: 32px;
+    }
+
+    .exportButton {
+        background: url(/Img/iconos/search.png) no-repeat;
+        cursor: pointer;
+        border: none;
+        width: 32px;
+        height: 32px;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <table border="0">
+                <tr>
+                    <td>@expenses.Resources.Descripciones.GastoMensual</td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td align="right">
+                        @Model.TotalGastoMensual
+                    </td>
+                    <td>
+                        @if (@Model.EnabletpcRespectoMesAnterior)
+                        {
+                            if (@Model.tpcRespectoMesAnterior <= 100)
+                            {
+                                <font color="green">  &nbsp;(@Model.tpcRespectoMesAnterior%)</font>
+                            }
+                            else
+                            {
+                                <font color="red"> &nbsp;(@Model.tpcRespectoMesAnterior%)</font>
+                            }
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>@expenses.Resources.Descripciones.GastoMesAnterior</td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td align="right">@Model.TotalGastoMensualMesAnterior</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-2"><p class="text-right"></p></div>
+        <div class="col-md-3">
+            <table border="0">
+                <tr>
+                    <td>@expenses.Resources.Descripciones.GastoMensualTarjeta</td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td align="right">
+                        <div title="@expenses.Resources.Descripciones.GastoMensualTarjetaExplicacion"> @Model.TotalGastoMensualTarjeta </div>
+                    </td>
+                </tr>
+                @if (@Model.SueldoPrevisto>0)
+                {
+                    <tr>
+                        <td>@expenses.Resources.Descripciones.AhorroMensualPrevisto</td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td align="right">@Model.AhorroPrevisoMesActual</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-4">
+            <table border="0" class="pull-right img-responsive">
+                <tr>
+                    <td align="right">
+                        <a href='@Url.Action("Add", "Gastos")'>
+                            <img src="~/Img/iconos/AddNew.png" title="@expenses.Resources.Descripciones.ImgNewGasto">
+                        </a>
+                        <a href='@Url.Action("GastosRecurrentes", "Gastos")'>
+                            <img src="~/Img/iconos/AddNewTimer.png" title="@expenses.Resources.Descripciones.ImgNewGastoRecurrente">
+                        </a>
+                        <a href='@Url.Action("Index", "Chart")'>
+                            <img src="~/Img/iconos/Graph.png" title="@expenses.Resources.Descripciones.ImgStats">
+                        </a>
+                        @if (Model.isMobile == false)
+                        {
+                            <a href='@Url.Action("ExportDatos", "Gastos")'>
+                                <img src="~/Img/iconos/export_xls.png" title="@expenses.Resources.Descripciones.Exportxls">
+                            </a>
+                        }
+                        </td>
+
+                </tr>
+
+            </table>
+            
+            </div>
+        </div>
+</div>
+
+<div class="jumbotron">
+    @if (Model.isMobile == false)
+    {
+        <!--
+            <div class="row">
+                <div class="col-sm-7">&nbsp;</div>
+                <div class="col-sm-4"><input class="form-control" placeholder="@expenses.Resources.Descripciones.GridTextoABuscar" data-mvcgrid-type="filter" data-mvcgrid-option="Concepto" />
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="SearchButton" data-mvcgrid-apply-filter="click"></button>
+                    <button type="button" id="exportButton" name="exportButton" class="SearchButton"></button>
+    </div>
+        </div>
+        -->
+    }
+
+
+    <div class="row">
+        <div class="col-md-12">@Html.MVCGrid("InOutUserGrid", new { user = User.Identity.Name, GlobalSearch = true })</div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#exportButton').click(function () {
+            alert("a");
+            location.href = MVCGrid.getExportUrl('InOutUserGrid');
+        });
+    });
+
+
+</script>
+
+
+

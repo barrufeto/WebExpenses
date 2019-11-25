@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Recurrentes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<br />
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-11">
+            <table border="0">
+                <tr>
+                    <td>@expenses.Resources.Descripciones.GastoMensualPeriodico</td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td align="right">@Model.ImportePeriodicoMensual</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-1">
+            <img src="~/Img/iconos/AddNewTimer.png" style="cursor:hand;cursor:pointer" data-toggle="modal" data-target="#myModal" title="@expenses.Resources.Descripciones.ImgNewGastoRecurrente">
+        </div>
+    </div>
+</div>
+<!--
+<button type="button" data-toggle="modal" data-target="#myModal">
+    Add Gasto
+</button>
+    -->
+<!--
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" data-myvalue="1111111"></button>
+<input type="image" src="/Img/iconos/search.png" name="image" data-toggle="modal" data-target="#myModal" data-myvalue="1111111" />
+ -->
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">@Html.MVCGrid("GastosRecurrentesGrid", new { user = User.Identity.Name, GlobalSearch = true })</div>
+    </div>
+</div>
+
+
+<br />
+    <!--
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    -->
+
+<script src="~/Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+<!-- Modal -->
+@using (Ajax.BeginForm("AddGastoRecurrente", "Gastos", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "frmEmp" }))
+{
+    <div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel"> @expenses.Resources.Descripciones.ModalGastoRecurrenteTitulo</h4>
+                    </div>
+                    <div class="modal-body" id="frmEmp">
+                        @Html.Partial("_GastoRecurrente")
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="@expenses.Resources.Descripciones.btnAdd" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<!-- Modal -->
+@using (Ajax.BeginForm("EditGastoRecurrente", "Gastos", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "frmEditGasto" }))
+{
+    <div>
+        <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel"> @expenses.Resources.Descripciones.ModalGastoRecurrenteTituloEdit</h4>
+                    </div>
+                    <div class="modal-body" id="frmEditGasto">
+                        @Html.Partial("_EditGastoRecurrente")
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="@expenses.Resources.Descripciones.btnModificar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<!-- Modal -->
+@using (Ajax.BeginForm("DelRecurrente", "Gastos", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "frmDeleteGasto" }))
+{
+    <div>
+        <div class="modal fade" id="myModalDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel"> @expenses.Resources.Descripciones.myModalDelTitle</h4>
+                    </div>
+                    <div class="modal-body" id="frmDeleteGasto">
+                        @Html.Partial("_DelGastoRecurrente")
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="@expenses.Resources.Descripciones.btnEliminar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
