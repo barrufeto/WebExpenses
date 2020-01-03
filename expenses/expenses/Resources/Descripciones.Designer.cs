@@ -637,7 +637,7 @@ namespace expenses.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a &amp;nbsp; Además el pasado mes de {0} también ahorraste {1}..
+        ///   Busca una cadena traducida similar a &amp;nbsp; Además el pasado mes de {0} también ahorraste {1}€..
         /// </summary>
         public static string mailAhorroMesMayorY2MesesMayor {
             get {
@@ -840,6 +840,15 @@ namespace expenses.Resources {
         public static string mailTotalGastado {
             get {
                 return ResourceManager.GetString("mailTotalGastado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;br/&gt;Para finalizar, indicarte que el total gastado durante el pasado año ha sido de &lt;b&gt;{0}€&lt;/b&gt;..
+        /// </summary>
+        public static string mailTotalGastadoAnual {
+            get {
+                return ResourceManager.GetString("mailTotalGastadoAnual", resourceCulture);
             }
         }
         

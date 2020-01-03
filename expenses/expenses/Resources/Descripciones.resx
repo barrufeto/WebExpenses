@@ -484,7 +484,7 @@
     <value>&lt;br/&gt;&lt;br/&gt;En lo referente al ahorro mensual, este mes según el ahorro definido en Expenses has conseguido ahorrar &lt;b&gt;{0}€&lt;/b&gt;.</value>
   </data>
   <data name="mailAhorroMesMayorY2MesesMayor" xml:space="preserve">
-    <value>&amp;nbsp; Además el pasado mes de {0} también ahorraste {1}.</value>
+    <value>&amp;nbsp; Además el pasado mes de {0} también ahorraste {1}€.</value>
   </data>
   <data name="mailAhorroMesMayorY2MesesMenorOIgual" xml:space="preserve">
     <value>&amp;nbsp; Además has conseguido ahorrar después que el pasado {0} gastaste &lt;b&gt;{1}€&lt;/b&gt; de más. Felicidades, hay que seguir en esta dirección puesto que has pasado de no ahorrar, a ahorrar.</value>
@@ -509,5 +509,8 @@
   </data>
   <data name="y" xml:space="preserve">
     <value>&amp;nbsp;y&amp;nbsp;</value>
+  </data>
+  <data name="mailTotalGastadoAnual" xml:space="preserve">
+    <value>&lt;br/&gt;Para finalizar, indicarte que el total gastado durante el pasado año ha sido de &lt;b&gt;{0}€&lt;/b&gt;.</value>
   </data>
 </root>

@@ -88,7 +88,7 @@ namespace expenses
                 _dates.Any = DateTime.Now.Year - 1;
             }
 
-            if (DateTime.Now.Month == 2)
+            else if (DateTime.Now.Month == 2)
             {
                 _dates.Mes = 12;
                 _dates.Any = DateTime.Now.Year - 1;
@@ -180,17 +180,17 @@ namespace expenses
                             {
                                  if (i==1)
                                  {
-                                    _Res += _Gasto.Concepto;
+                                    _Res += "\"" +  _Gasto.Concepto + "\"";
                                  }
                                  else
                                  {
                                     _Res = _Res.Substring(0, _Res.Length - 2);
-                                    _Res += Resources.Descripciones.y + _Gasto.Concepto;
+                                    _Res += Resources.Descripciones.y + "\"" + _Gasto.Concepto + "\"";
                                  }
                             }
                         else
                             {
-                               _Res += _Gasto.Concepto + ", ";
+                               _Res += "\"" + _Gasto.Concepto  + "\"" + ", ";
                             }
                     }
                     _Res += ").";
@@ -249,22 +249,30 @@ namespace expenses
             try
             {
                 _TotalAnualAcumulado = context.SummaryTotal_Mensual.Where(x => x.idUser == _Usuari && x.Año == _GastoMesAnterior.Año).Sum(x => x.GastoTotal);
-                _Res += string.Format(Resources.Descripciones.mailTotalGastado, _TotalAnualAcumulado);
-
-                _TotalAnualAcumuladoAnyoAnterior = context.SummaryTotal_Mensual.Where(x => x.idUser == _Usuari && x.Año == _GastoMesAnterior.Año - 1).Sum(x => x.GastoTotal);
-                diferencia = Math.Abs(_TotalAnualAcumulado - _TotalAnualAcumuladoAnyoAnterior);
-            
-                if (_TotalAnualAcumuladoAnyoAnterior < _TotalAnualAcumulado)
+                if (_GastoMesAnterior.Mes == 12)
                 {
-                    _Res = string.Format(Resources.Descripciones.mailTotalGastadoAnyoAnteriorMenos, _TotalAnualAcumulado, _TotalAnualAcumuladoAnyoAnterior, diferencia);
+                     //El darrer mes de l'any, només treiem el total.
+                    _Res += string.Format(Resources.Descripciones.mailTotalGastadoAnual, _TotalAnualAcumulado);
                 }
+                else
+                { 
+                    _Res += string.Format(Resources.Descripciones.mailTotalGastado, _TotalAnualAcumulado);
 
-                if (_TotalAnualAcumuladoAnyoAnterior == _TotalAnualAcumulado)
-                { _Res = string.Format(Resources.Descripciones.mailTotalGastadoAnyoAnteriorIgual, _TotalAnualAcumulado);}
+                    _TotalAnualAcumuladoAnyoAnterior = context.SummaryTotal_Mensual.Where(x => x.idUser == _Usuari && x.Año == _GastoMesAnterior.Año - 1 && x.Mes <= _GastoMesAnterior.Mes).Sum(x => x.GastoTotal);
+                    diferencia = Math.Abs(_TotalAnualAcumulado - _TotalAnualAcumuladoAnyoAnterior);
+            
+                    if (_TotalAnualAcumuladoAnyoAnterior < _TotalAnualAcumulado)
+                    {
+                        _Res = string.Format(Resources.Descripciones.mailTotalGastadoAnyoAnteriorMenos, _TotalAnualAcumulado, _TotalAnualAcumuladoAnyoAnterior, diferencia);
+                    }
 
-                if (_TotalAnualAcumuladoAnyoAnterior > _TotalAnualAcumulado)
-                {
-                    _Res = string.Format(Resources.Descripciones.mailTotalGastadoAnyoAnteriorMas, _TotalAnualAcumulado, _TotalAnualAcumuladoAnyoAnterior, diferencia);
+                    if (_TotalAnualAcumuladoAnyoAnterior == _TotalAnualAcumulado)
+                    { _Res = string.Format(Resources.Descripciones.mailTotalGastadoAnyoAnteriorIgual, _TotalAnualAcumulado);}
+
+                    if (_TotalAnualAcumuladoAnyoAnterior > _TotalAnualAcumulado)
+                    {
+                        _Res = string.Format(Resources.Descripciones.mailTotalGastadoAnyoAnteriorMas, _TotalAnualAcumulado, _TotalAnualAcumuladoAnyoAnterior, diferencia);
+                    }
                 }
 
             }

@@ -1,0 +1,30 @@
+﻿<title>@ViewBag.Title</title>
+
+<h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">Satyaprakash's Bhubaneswar City Details Using MVC and BOOTSTRAP</h2>
+<fieldset>
+    <legend style="font-family: Arial Black; color: blue; font-size: large;">Check Bhubaneswar City Details</legend>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div id="map" style="width:100%;height:500px"></div>
+    <script>
+        function myMap() {
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = {
+                center: new google.maps.LatLng(20.296100, 85.824500),
+                zoom: 18,
+                mapTypeId: google.maps.MapTypeId.HYBRID
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgLlCYzQe6wyBWRCjPlZW5fD-5iugWqyU&callback=myMap"></script>
+
+</fieldset>
+<footer>
+    <p style="background-color: Yellow; font-weight: bold; color:blue; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
+</footer> 

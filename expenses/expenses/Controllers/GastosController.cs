@@ -75,6 +75,15 @@ namespace experses.Controllers
         }
 
 
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Test()
+        {
+            return View();
+        }
+         
+
         [Authorize]
         [HttpGet]
         public ActionResult Add()
