@@ -7,30 +7,11 @@ using System.Web.Helpers;
 
 namespace experses.Models
 {
-    public class ChartViewModel
+    public class ChartGastoMensual
     {
-
-
-        public enum eTipoChart
-        {
-            MesActual=0,
-            AnyoActual,
-            Otro
-        }
-
-        public enum eEstiloChart
-        {
-              Barras = 0,
-              Quesito
-        }
-
-        public Chart Chart { get; set; }
-        public eTipoChart _TipoChart { get; set; }
-        public eEstiloChart _EstiloChart { get; set; }
-
-        public DateTime _DateFrom { get; set; }
-        public DateTime _DateTo { get; set; }
-
+       
+        public decimal GastoMesActual { get; set; }
+        public decimal GastoMesAnterior { get; set; }
 
 
     }

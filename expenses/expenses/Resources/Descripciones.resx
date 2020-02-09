@@ -513,4 +513,58 @@
   <data name="mailTotalGastadoAnual" xml:space="preserve">
     <value>&lt;br/&gt;Para finalizar, indicarte que el total gastado durante el pasado año ha sido de &lt;b&gt;{0}€&lt;/b&gt;.</value>
   </data>
+  <data name="RptTituloGastoAhorro" xml:space="preserve">
+    <value>Últimos 12 meses Gasto -  Ahorro </value>
+  </data>
+  <data name="RptGastoMensual" xml:space="preserve">
+    <value>Gasto Mensual</value>
+  </data>
+  <data name="RptGastoMensualGraph1" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="RptGastoMensualGraph2" xml:space="preserve">
+    <value>Gasto</value>
+  </data>
+  <data name="RptGastoMensualGraph3" xml:space="preserve">
+    <value>Ahorro</value>
+  </data>
+  <data name="RptGastoMensualMenu" xml:space="preserve">
+    <value>Gastos último mes</value>
+  </data>
+  <data name="RptTituloGastoAhorroMenu" xml:space="preserve">
+    <value>Gastos y Ahorros</value>
+  </data>
+  <data name="RptGastoAnualAcumulado" xml:space="preserve">
+    <value>Gasto Anual Acumulado</value>
+  </data>
+  <data name="RptGastoMensualLabel1" xml:space="preserve">
+    <value>Gasto Mes Actual</value>
+  </data>
+  <data name="RptGastoMensualLabel2" xml:space="preserve">
+    <value>Gasto Mes Anterior</value>
+  </data>
+  <data name="RptGastoMensualLabel3" xml:space="preserve">
+    <value>Comparación con el mes anterior</value>
+  </data>
+  <data name="RptGastoMensualLabel4" xml:space="preserve">
+    <value>Mes Pasado</value>
+  </data>
+  <data name="RptGastoMensualLabel5" xml:space="preserve">
+    <value>Mes Actual</value>
+  </data>
+  <data name="RptGastoAcumuladoLabel1" xml:space="preserve">
+    <value>Dias</value>
+  </data>
+  <data name="RptGastoAcumuladoLabel2" xml:space="preserve">
+    <value>Gasto acumulado</value>
+  </data>
+  <data name="RptAñoEnCurso" xml:space="preserve">
+    <value>Reports Año en Curso</value>
+  </data>
+  <data name="RptMesEnCurso" xml:space="preserve">
+    <value>Reports Mensuales</value>
+  </data>
+  <data name="RptUltimos12Meses" xml:space="preserve">
+    <value>Reports últimos 12 meses</value>
+  </data>
 </root>

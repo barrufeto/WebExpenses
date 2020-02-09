@@ -94,17 +94,19 @@
                         <a href='@Url.Action("GastosRecurrentes", "Gastos")'>
                             <img src="~/Img/iconos/AddNewTimer.png" title="@expenses.Resources.Descripciones.ImgNewGastoRecurrente">
                         </a>
-                        <a href='@Url.Action("Index", "Chart")'>
-                            <img src="~/Img/iconos/Graph.png" title="@expenses.Resources.Descripciones.ImgStats">
-                        </a>
+                        <!--
+                            <a href='@Url.Action("Index", "Chart")'>
+                                <img src="~/Img/iconos/Graph.png" title="@expenses.Resources.Descripciones.ImgStats">
+                            </a>
+                        -->
                         @if (Model.isMobile == false)
                         {
                             <a href='@Url.Action("ExportDatos", "Gastos")'>
                                 <img src="~/Img/iconos/export_xls.png" title="@expenses.Resources.Descripciones.Exportxls">
                             </a>
                         }
-                        <a href='@Url.Action("Test", "Gastos")'>
-                            <img src="~/Img/iconos/Graph.png" title="TEST">
+                        <a href='@Url.Action("Index", "Chart")'>
+                            <img src="~/Img/iconos/Graph.png" title="@expenses.Resources.Descripciones.ImgStats">
                         </a>
 
                     </td>

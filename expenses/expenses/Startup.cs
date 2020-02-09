@@ -20,8 +20,13 @@ namespace expenses
 
             //BackgroundJob.Enqueue(() => Scheduled.SchedulesGastos());
 
-            //s'executa cada dia
+            //s'executa al acabar el dia
+            //RecurringJob.AddOrUpdate(() => Scheduled.AcumulatedGastos(), "55 23 * * *");
+            RecurringJob.AddOrUpdate(() => Scheduled.AcumulatedGastos(), Cron.Daily);
+
+            //s'executa cada dia al començar
             RecurringJob.AddOrUpdate(() => Scheduled.SchedulesGastos(),Cron.Daily);
+            //RecurringJob.AddOrUpdate(() => Scheduled.SchedulesGastos(), "0 1 * * *");
 
             //S'executa el dia 2 de cada mes
             RecurringJob.AddOrUpdate(() => Scheduled.ResumsGastos(), "0 0 2 * *");

@@ -147,6 +147,9 @@
     <Compile Include="Sueldo.cs">
       <DependentUpon>ExpensesEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SummaryGastoAcumuladoPorDia.cs">
+      <DependentUpon>ExpensesEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SummaryPorGrupoGasto.cs">
       <DependentUpon>ExpensesEntity.tt</DependentUpon>
     </Compile>

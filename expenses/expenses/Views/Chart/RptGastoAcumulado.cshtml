@@ -1,0 +1,51 @@
+﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        $.ajax({
+            type: "POST",
+            url: "GetGastoAcumuladoData",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var data = google.visualization.arrayToDataTable(r);
+
+                var options = {
+                    title: '@expenses.Resources.Descripciones.RptGastoAnualAcumulado',
+                    curveType: 'function',
+                    legend: { position: 'none' },
+                    chartArea: { 'width': '80%', 'height': '80%' },
+                    hAxis: { scaleType: 'number', title: '@expenses.Resources.Descripciones.RptGastoAcumuladoLabel1' }
+                    ,vAxis: { title: '@expenses.Resources.Descripciones.RptGastoAcumuladoLabel2' }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                chart.draw(data, options);
+
+            },
+            failure: function (r) {
+                alert(r.d);
+            },
+            error: function (r) {
+                alert(r.d);
+            }
+        });
+       }
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-11">
+                <div id="curve_chart" style="width: 1100px; height: 680px"></div>                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    

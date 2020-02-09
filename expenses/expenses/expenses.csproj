@@ -246,6 +246,9 @@
     <Content Include="Img\iconos\grey_star24.png" />
     <Content Include="Img\iconos\Money.png" />
     <Content Include="Img\iconos\NewGasto.png" />
+    <Content Include="Img\iconos\RptAcumuladoAnual.png" />
+    <Content Include="Img\iconos\RptFinanzas.png" />
+    <Content Include="Img\iconos\RptGastoMensual.png" />
     <Content Include="Img\iconos\Search.png" />
     <Content Include="Img\iconos\Ver.png" />
     <Content Include="Img\iconos\white_star24.png" />
@@ -307,9 +310,11 @@
     <Content Include="Views\Gastos\_DelGastoRecurrente.cshtml" />
     <Content Include="Views\Gastos\Ver.cshtml" />
     <Content Include="Views\Sueldos\GestionSueldo.cshtml" />
-    <Content Include="Views\Chart\Test.cshtml" />
-    <Content Include="Views\Chart\Test_Graph.cshtml" />
     <Content Include="Views\Gastos\Test.cshtml" />
+    <Content Include="Views\Chart\RptAhorroGasto.cshtml" />
+    <Content Include="Views\Chart\RptGastoMensual.cshtml" />
+    <Content Include="Views\Chart\RptGastoAcumulado.cshtml" />
+    <Content Include="Views\Chart\RptDiffEntreMeses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

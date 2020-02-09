@@ -1,0 +1,133 @@
+﻿@model experses.Models.ChartGastoMensual
+@{
+    ViewBag.Title = "RptGastoMensual";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="//www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+
+    //var button = document.getElementById('change-chart');
+
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChartMesActual);
+
+    function PrintGraph() {
+        if (document.getElementById('hdnGrafico').value == 0) { drawChartMesActualComparado(); }
+        else { drawChartMesActual(); }
+    }
+
+    function drawChartMesActual() {
+        document.getElementById('hdnGrafico').value = 0
+        var x = document.getElementById("divMesAnterior");
+        x.style.display = "none";
+
+        $.ajax({
+            type: "POST",
+            url: "GetGastoMensualData",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var data = google.visualization.arrayToDataTable(r);
+
+                //Pie
+                var options = {
+                    title: ''
+                    ,chartArea: { 'width': '100%', 'height': '80%' },
+                };
+                var chart = new google.visualization.PieChart($("#chart")[0]);
+                chart.draw(data, options);
+            },
+            failure: function (r) {
+                alert(r.d);
+            },
+            error: function (r) {
+                alert(r.d);
+            }
+        });
+    }
+
+    function drawChartMesActualComparado() {
+        document.getElementById('hdnGrafico').value = 1
+
+        var x = document.getElementById("divMesAnterior");
+         x.style.display = "block";
+
+        var oldData;
+        $.ajax({
+            type: "POST",
+            url: "GetGastoMensualDataComparado",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var oldData = google.visualization.arrayToDataTable(r.DatosActual);
+                var newData = google.visualization.arrayToDataTable(r.DatosMesAnterior);
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart'));
+                var options = {
+                    legend: { position: 'top' }
+                    , diff: {
+                        oldData: { opacity: 1, color: '#C0C0C0', tooltip: { prefix: '@expenses.Resources.Descripciones.RptGastoMensualLabel4' } },
+                        newData: { opacity: 1, color: '#e6693e', tooltip: { prefix: '@expenses.Resources.Descripciones.RptGastoMensualLabel5' } }
+                    }
+                    , chartArea: { 'width': '70%', 'height': '80%' },
+                };
+
+                var diffData = chart.computeDiff(newData, oldData);
+                //colChartDiff.draw(diffData, options);
+
+                chart.draw(diffData, options);
+
+                $("text").each(function () {
+                    if ($(this).text() == "Previous data") {
+                        $(this).text('@expenses.Resources.Descripciones.RptGastoMensualLabel2');
+                    }
+                });
+
+            },
+            failure: function (r) {
+                alert(r.d);
+            },
+            error: function (r) {
+                alert(r.d);
+            }
+            ,
+        });
+
+    }
+
+</script>
+
+<br />
+<br />
+
+<div class="container">
+
+    <div class="row">
+        <div class="form-group">
+
+            <div class="col-md-4">@Html.LabelFor(m => m.GastoMesAnterior, expenses.Resources.Descripciones.RptGastoMensualLabel1, new { @class = "control-label" })&nbsp;&nbsp;&nbsp; <b> @Model.GastoMesActual&nbsp;€</b></div>
+            <div class="col-md-4"><div id="divMesAnterior"> @Html.LabelFor(m => m.GastoMesAnterior, expenses.Resources.Descripciones.RptGastoMensualLabel2, new { @class = "control-label" }) &nbsp;&nbsp;&nbsp; <b>@Model.GastoMesAnterior &nbsp;€ </b></div></div>
+            <div class="col-md-4"><input type="checkbox" onclick="PrintGraph()">&nbsp;&nbsp;&nbsp;&nbsp;@expenses.Resources.Descripciones.RptGastoMensualLabel3</div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-11">
+                <div id="chart" style="width: 1200px; height: 620px;">
+                <span id='barchart_diff' style='width: 450px; height: 250px; display: inline-block'></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" id="hdnGrafico" name="Grafico" value="0">
+

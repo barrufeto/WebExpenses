@@ -1204,6 +1204,168 @@ namespace expenses.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Reports Año en Curso.
+        /// </summary>
+        public static string RptAñoEnCurso {
+            get {
+                return ResourceManager.GetString("RptAñoEnCurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Dias.
+        /// </summary>
+        public static string RptGastoAcumuladoLabel1 {
+            get {
+                return ResourceManager.GetString("RptGastoAcumuladoLabel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gasto acumulado.
+        /// </summary>
+        public static string RptGastoAcumuladoLabel2 {
+            get {
+                return ResourceManager.GetString("RptGastoAcumuladoLabel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gasto Anual Acumulado.
+        /// </summary>
+        public static string RptGastoAnualAcumulado {
+            get {
+                return ResourceManager.GetString("RptGastoAnualAcumulado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gasto Mensual.
+        /// </summary>
+        public static string RptGastoMensual {
+            get {
+                return ResourceManager.GetString("RptGastoMensual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mes.
+        /// </summary>
+        public static string RptGastoMensualGraph1 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualGraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gasto.
+        /// </summary>
+        public static string RptGastoMensualGraph2 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualGraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ahorro.
+        /// </summary>
+        public static string RptGastoMensualGraph3 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualGraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gasto Mes Actual.
+        /// </summary>
+        public static string RptGastoMensualLabel1 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualLabel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gasto Mes Anterior.
+        /// </summary>
+        public static string RptGastoMensualLabel2 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualLabel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comparación con el mes anterior.
+        /// </summary>
+        public static string RptGastoMensualLabel3 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualLabel3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mes Pasado.
+        /// </summary>
+        public static string RptGastoMensualLabel4 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualLabel4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mes Actual.
+        /// </summary>
+        public static string RptGastoMensualLabel5 {
+            get {
+                return ResourceManager.GetString("RptGastoMensualLabel5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gastos último mes.
+        /// </summary>
+        public static string RptGastoMensualMenu {
+            get {
+                return ResourceManager.GetString("RptGastoMensualMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reports Mensuales.
+        /// </summary>
+        public static string RptMesEnCurso {
+            get {
+                return ResourceManager.GetString("RptMesEnCurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Últimos 12 meses Gasto -  Ahorro .
+        /// </summary>
+        public static string RptTituloGastoAhorro {
+            get {
+                return ResourceManager.GetString("RptTituloGastoAhorro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Gastos y Ahorros.
+        /// </summary>
+        public static string RptTituloGastoAhorroMenu {
+            get {
+                return ResourceManager.GetString("RptTituloGastoAhorroMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reports últimos 12 meses.
+        /// </summary>
+        public static string RptUltimos12Meses {
+            get {
+                return ResourceManager.GetString("RptUltimos12Meses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Septiembre.
         /// </summary>
         public static string Septiembre {

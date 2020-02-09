@@ -29,6 +29,7 @@ namespace ExpensesEF
             this.SummaryPorSubTipoGasto = new HashSet<SummaryPorSubTipoGasto>();
             this.SummaryPorSubTipoGasto_Mensual = new HashSet<SummaryPorSubTipoGasto_Mensual>();
             this.ValuesDefaultConcepto = new HashSet<ValuesDefaultConcepto>();
+            this.SummaryGastoAcumuladoPorDia = new HashSet<SummaryGastoAcumuladoPorDia>();
         }
     
         public string Id { get; set; }
@@ -77,5 +78,7 @@ namespace ExpensesEF
         public virtual TipoPago TipoPago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ValuesDefaultConcepto> ValuesDefaultConcepto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SummaryGastoAcumuladoPorDia> SummaryGastoAcumuladoPorDia { get; set; }
     }
 }

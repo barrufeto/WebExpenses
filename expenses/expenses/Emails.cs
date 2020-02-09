@@ -515,7 +515,7 @@ namespace expenses
         {
             //Aquí es donde se hace lo especial
             SmtpClient client = new SmtpClient();
-            
+            client.Credentials = new System.Net.NetworkCredential("oscar.redondo", "rkwsbapsruxhrass");
             client.Port = 587;
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true; //Esto es para que vaya a través de SSL que es obligatorio con GMail

@@ -92,8 +92,6 @@ namespace experses.Controllers
             string _codigo;
             string userId;
 
-            
-
             _codigo = System.Threading.Thread.CurrentThread.CurrentCulture.ToString().Substring(0, 2);
 
             using (var context = new ExpensesEF.Entities())
@@ -305,16 +303,45 @@ namespace experses.Controllers
             return PartialView("_GastoRecurrente", model);
         }
 
+        /*
+        private void ModificarAcumulatsPosteriors(Gasto _gasto)
+        {
+            //var _GastoAcumulado = new SummaryGastoAcumuladoPorDia();
+            var _GastoDiaCanvi = new SummaryGastoAcumuladoPorDia();
+            List<SummaryGastoAcumuladoPorDia> _GastosAModificar;
+            var context = new ExpensesEF.Entities();
+            
+            _GastosAModificar = context.SummaryGastoAcumuladoPorDia.Where(x=>x.Fecha >= _gasto.Fecha && x.idUser==_gasto.idUserGasto ).ToList();
+
+            foreach (var _GastoAcumulado in _GastosAModificar)
+            {
+                _GastoAcumulado.GastoAcumuladoAnual -= _gasto.Precio;
+                if (_GastoAcumulado.Fecha == _gasto.Fecha)
+                {
+                    _GastoAcumulado.ItemsComprados -= 1;
+                }
+                context.Entry(_GastoAcumulado).State = System.Data.Entity.EntityState.Modified;
+            }
+            context.SaveChanges();
+        }
+        */
+
+
         [Authorize]
         [HttpGet]
         public ActionResult Delete(int id)
         {
             
             var _Gasto = new Gasto();
+            
 
             using (var context = new ExpensesEF.Entities())
             {
                 _Gasto = context.Gasto.Find(id);
+                //Actualitzem gastos acumulats...
+                if (_Gasto != null) { context.spAddSubPrecioGastosAcumulados(_Gasto.idGasto, 0, 0); }
+
+                //Eliminem Gasto
                 context.Entry(_Gasto).State = System.Data.Entity.EntityState.Deleted;
                 context.SaveChanges();
             }
@@ -418,6 +445,7 @@ namespace experses.Controllers
         [Authorize]
         private ActionResult UpdateGasto(GastosViewModels model, int id)
         {
+            decimal ValorOriginal=0;
             var _Gasto = new Gasto();
             string _codigo;
             var context = new ExpensesEF.Entities();
@@ -433,6 +461,7 @@ namespace experses.Controllers
             }
             
             _Gasto = context.Gasto.Where(x => x.idGasto == id).FirstOrDefault();
+            ValorOriginal = _Gasto.Precio;
             _Gasto.idGasto = id;
             _Gasto.Concepto = model.Concepto;
             _Gasto.Fecha = model.Fecha;
@@ -453,6 +482,17 @@ namespace experses.Controllers
 
             context.Entry(_Gasto).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
+
+            //Updatamos el total acumulado.
+            if (ValorOriginal> model.Importe)
+            {
+                context.spAddSubPrecioGastosAcumulados(_Gasto.idGasto,2,ValorOriginal - model.Importe);
+            }
+            else
+            {
+                context.spAddSubPrecioGastosAcumulados(_Gasto.idGasto, 3, model.Importe - ValorOriginal);
+            }
+
 
             return RedirectToAction("IndexA", "Home");
     }
@@ -517,6 +557,10 @@ namespace experses.Controllers
                     _GastoCompartido.precio = model.Importe;
                     context.GastoCompartido.Add(_GastoCompartido);
                     context.SaveChanges();
+
+                    context.spAddSubPrecioGastosAcumulados(_GastoCopiado.idGasto, 1, 0);
+                    context.spAddSubPrecioGastosAcumulados(_Gasto.idGasto, 1, 0);
+
                 }
                 else
                 {
@@ -525,11 +569,10 @@ namespace experses.Controllers
 
                     context.Gasto.Add(_Gasto);
                     context.SaveChanges();
+
+                    //Actualitzem gastos acumulats
+                    context.spAddSubPrecioGastosAcumulados(_Gasto.idGasto, 1,0);
                 }
-                
-
-
-
                 dbContextTransaction.Commit();
             }
 
@@ -618,6 +661,7 @@ namespace experses.Controllers
             _GastoCopiado.Precio = _Gasto.Precio;
             _GastoCopiado.EsCompartido = _Gasto.EsCompartido;
             _GastoCopiado.Valoracion = _Gasto.Valoracion;
+            
             return _GastoCopiado;
         }
 
@@ -821,6 +865,6 @@ namespace experses.Controllers
             return selectList;
         }
         #endregion
-        
+
     }
 }

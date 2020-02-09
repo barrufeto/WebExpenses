@@ -75,6 +75,7 @@ namespace ExpensesEF
         public virtual DbSet<ValuesDefaultConcepto> ValuesDefaultConcepto { get; set; }
         public virtual DbSet<ValuesEnvioEmail> ValuesEnvioEmail { get; set; }
         public virtual DbSet<vst_Export_Gastos> vst_Export_Gastos { get; set; }
+        public virtual DbSet<SummaryGastoAcumuladoPorDia> SummaryGastoAcumuladoPorDia { get; set; }
     
         public virtual int spGetMonthlyExpenses(string userGasto, Nullable<int> month, Nullable<int> year, ObjectParameter retMont, ObjectParameter retMontPrevious, ObjectParameter retCurrentCard, ObjectParameter retMontIncludingComputables)
         {
@@ -295,6 +296,32 @@ namespace ExpensesEF
                 new ObjectParameter("Usuario", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spGetInfoDiaMaxGastoMes", anoParameter, mesParameter, usuarioParameter, res);
+        }
+    
+        public virtual int spGastosDiarioAcumulados(Nullable<int> year)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spGastosDiarioAcumulados", yearParameter);
+        }
+    
+        public virtual int spAddSubPrecioGastosAcumulados(Nullable<int> idGasto, Nullable<int> operacion, Nullable<decimal> valorUpdate)
+        {
+            var idGastoParameter = idGasto.HasValue ?
+                new ObjectParameter("IdGasto", idGasto) :
+                new ObjectParameter("IdGasto", typeof(int));
+    
+            var operacionParameter = operacion.HasValue ?
+                new ObjectParameter("Operacion", operacion) :
+                new ObjectParameter("Operacion", typeof(int));
+    
+            var valorUpdateParameter = valorUpdate.HasValue ?
+                new ObjectParameter("ValorUpdate", valorUpdate) :
+                new ObjectParameter("ValorUpdate", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spAddSubPrecioGastosAcumulados", idGastoParameter, operacionParameter, valorUpdateParameter);
         }
     }
 }

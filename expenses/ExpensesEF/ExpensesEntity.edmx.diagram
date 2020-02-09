@@ -99,6 +99,8 @@
         <EntityTypeShape EntityType="expensesModel.ValuesEnvioEmail" Width="1.5" PointX="5.375" PointY="11.75" />
         <AssociationConnector Association="expensesModel.FK_ValuesEnvioEmail_Idiomas" />
         <EntityTypeShape EntityType="expensesModel.vst_Export_Gastos" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="expensesModel.SummaryGastoAcumuladoPorDia" Width="1.5" PointX="8.25" PointY="44.125" />
+        <AssociationConnector Association="expensesModel.FK_SummaryGastoAcumuladoPorDia_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -53,9 +53,20 @@ namespace expenses.Models
             return null;
         }
 
-        //Gastos programats
-        //Execució diària
-        public ActionResult SchedulesGastos()
+        //Acumulat gasto anual per persona
+        //Cada dia a 23:59
+        public ActionResult AcumulatedGastos()
+        {
+            var context = new ExpensesEF.Entities();
+            int year;
+            year = DateTime.Now.Year;
+            context.spGastosDiarioAcumulados(year);
+            return null;
+        }
+
+            //Gastos programats
+            //Execució diària
+            public ActionResult SchedulesGastos()
         {
             var context = new ExpensesEF.Entities();
 

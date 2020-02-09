@@ -1,4 +1,7 @@
-﻿<title>@ViewBag.Title</title>
+﻿<!--
+
+
+<title>@ViewBag.Title</title>
 
 <h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">Satyaprakash's Bhubaneswar City Details Using MVC and BOOTSTRAP</h2>
 <fieldset>
@@ -27,4 +30,211 @@
 </fieldset>
 <footer>
     <p style="background-color: Yellow; font-weight: bold; color:blue; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
-</footer> 
+</footer>
+-->
+<!--
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Mes', 'Gasto'],
+                ['Enero', 1798.99],
+                ['Febrero', 322.89],
+                ['Marzo', 1093.65],
+                ['Abril', 3139.51],
+                ['Mayo', 1350.18],
+                ['Junio', 4838.26],
+                ['Julio', 2348.36],
+                ['Agosto', 2827.07],
+                ['Septiembre', 1094.30],
+                ['Octubre', 2656.01],
+                ['Noviembre', 1166.73],
+                ['Diciembre', 2273.48]
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Gastos anuales',
+                    subtitle: 'Año 2019',
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+</head>
+<body>
+    <div id="columnchart_material" style="width: 1000px; height: 500px;"></div>
+
+
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+
+
+
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Mes', 'Gasto', 'Ahorro', 'Diferencia'],
+                ['Enero', 1000, 400, 600],
+                ['Febrero', 2000, 400, 1600],
+                ['Marzo', 660, 1120, 300],
+                ['Abril', 1030, 540, 350],
+                ['Mayo', 1000, 400, 600],
+                ['Junio', 2000, 400, 1600],
+                ['Julio', 660, 1120, 300],
+                ['Agosto', 1000, 400, 600],
+                ['Septiembre', 2000, 400, 1600],
+                ['Octubre', 660, 1120, 300],
+                ['Noviembre', 1000, 400, 600],
+                ['Diciembre', 2000, 400, 1600]
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Company Performance',
+                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                },
+                bars: 'horizontal' // Required for Material Bar Charts.
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
+</head>
+<body>
+    <div id="barchart_material" style="width: 900px; height: 700px;"></div>
+</body>
+</html>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<script src="~/scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div>
+    <h2>Google Chart - Bar Chart</h2>
+</div>
+
+<div id="chart_Bar_div" style="width:450px; height: 300px;"></div>
+
+https://github.com/Alaeddinalhamoud/GoogleChart-MVC/blob/master/Views/BarChart/Index.cshtml
+
+<a href="https://developers.google.com/chart/">Google Charts</a>
+<script>
+    var chartData; // globar variable for hold chart data
+    //  google.load("visualization", "1", { packages: ["corechart"] });
+    google.charts.load('current', { 'packages': ['corechart'] });
+    // Here We will fill chartData
+    $(document).ready(function () {
+
+        $.ajax({
+            url: "GetChartData",
+
+            dataType: "json",
+
+            contentType: "application/json; chartset=utf-8",
+            success: function (data) {
+                chartData = data;
+            },
+            error: function () {
+                alert("Error loading Post and Comment data! Please try again.");
+            }
+        }).done(function () {
+            // after complete loading data
+            google.setOnLoadCallback(drawChart);
+            drawChart();
+        });
+    });
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(chartData);
+        var options = {
+            title: "Sales and Expenses per year",
+            pointSize: 5
+        };
+        var Chart = new google.visualization.ColumnChart(document.getElementById('chart_Bar_div'));
+        Chart.draw(data, options);
+    }
+</script>
+
+-->
+
+@{
+    /**/
+
+    /**/
+
+    /**/
+
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!--
+<script type="text/javascript">
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+        $.ajax({
+            type: "POST",
+            url: "GetChartData",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var data = google.visualization.arrayToDataTable(r);
+
+                //Pie
+                var options = {
+                    title: 'Relación Gasto-Ahorro 2019'
+                };
+                //var chart = new google.visualization.ColumnChart($("#chart")[0]);
+
+                var chart = new google.charts.Bar(document.getElementById('chart'));
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+
+
+                //chart.draw(data, options);
+            },
+            failure: function (r) {
+                alert(r.d);
+            },
+            error: function (r) {
+                alert(r.d);
+            }
+        });
+    }
+</script>
+<br />
+<br />
+<div id="chart" style="width: 1200px; height: 630px;">
+</div>

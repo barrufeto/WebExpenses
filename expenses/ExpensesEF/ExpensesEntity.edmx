@@ -201,6 +201,18 @@ advertencia 6002: La tabla o vista 'expenses.dbo.GrupoGastoTextosTraduccion' no 
           <Property Name="SueldoNetoNoviembre" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SueldoNetoDiciembre" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="SummaryGastoAcumuladoPorDia">
+          <Key>
+            <PropertyRef Name="idUser" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="DayInYear" />
+          </Key>
+          <Property Name="idUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="DayInYear" Type="int" Nullable="false" />
+          <Property Name="ItemsComprados" Type="int" Nullable="false" />
+          <Property Name="GastoAcumuladoAnual" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="SummaryPorGrupoGasto">
           <Key>
             <PropertyRef Name="idUser" />
@@ -937,6 +949,18 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SummaryGastoAcumuladoPorDia_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="SummaryGastoAcumuladoPorDia" Type="Self.SummaryGastoAcumuladoPorDia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SummaryGastoAcumuladoPorDia">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SummaryPorSubTipoGasto_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="SummaryPorSubTipoGasto" Type="Self.SummaryPorSubTipoGasto" Multiplicity="*" />
@@ -1170,8 +1194,16 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <Parameter Name="idValor" Type="int" Mode="In" />
           <Parameter Name="GrupoTexto" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spAddSubPrecioGastosAcumulados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdGasto" Type="int" Mode="In" />
+          <Parameter Name="Operacion" Type="int" Mode="In" />
+          <Parameter Name="ValorUpdate" Type="decimal" Mode="In" />
+        </Function>
         <Function Name="spBloqueaEdicionGastos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="year" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGastosDiarioAcumulados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="year" Type="int" Mode="In" />
         </Function>
         <Function Name="spGetInfoDiaMaxGastoMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1254,6 +1286,7 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <EntitySet Name="SubTipoGasto" EntityType="Self.SubTipoGasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubTipoGastoTextosTraduccion" EntityType="Self.SubTipoGastoTextosTraduccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sueldo" EntityType="Self.Sueldo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SummaryGastoAcumuladoPorDia" EntityType="Self.SummaryGastoAcumuladoPorDia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SummaryPorGrupoGasto" EntityType="Self.SummaryPorGrupoGasto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SummaryPorGrupoGasto_Mensual" EntityType="Self.SummaryPorGrupoGasto_Mensual" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SummaryPorSubTipoGasto" EntityType="Self.SummaryPorSubTipoGasto" Schema="dbo" store:Type="Tables" />
@@ -1463,6 +1496,10 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <AssociationSet Name="FK_Sueldo_AspNetUsers" Association="Self.FK_Sueldo_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Sueldo" EntitySet="Sueldo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SummaryGastoAcumuladoPorDia_AspNetUsers" Association="Self.FK_SummaryGastoAcumuladoPorDia_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="SummaryGastoAcumuladoPorDia" EntitySet="SummaryGastoAcumuladoPorDia" />
           </AssociationSet>
           <AssociationSet Name="FK_SummaryPorSubTipoGasto_AspNetUsers" Association="Self.FK_SummaryPorSubTipoGasto_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -1854,6 +1891,19 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Res" Mode="InOut" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spGastosDiarioAcumulados">
+          <Parameter Name="year" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SummaryGastoAcumuladoPorDia" EntityType="expensesModel.SummaryGastoAcumuladoPorDia" />
+          <AssociationSet Name="FK_SummaryGastoAcumuladoPorDia_AspNetUsers" Association="expensesModel.FK_SummaryGastoAcumuladoPorDia_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="SummaryGastoAcumuladoPorDia" EntitySet="SummaryGastoAcumuladoPorDia" />
+          </AssociationSet>
+          <FunctionImport Name="spAddSubPrecioGastosAcumulados">
+            <Parameter Name="IdGasto" Mode="In" Type="Int32" />
+            <Parameter Name="Operacion" Mode="In" Type="Int32" />
+            <Parameter Name="ValorUpdate" Mode="In" Type="Decimal" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1931,6 +1981,7 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <NavigationProperty Name="AspNetUsers2" Relationship="expensesModel.FK_AspNetUsers_AspNetUsers" FromRole="AspNetUsers1" ToRole="AspNetUsers" />
           <NavigationProperty Name="TipoPago" Relationship="expensesModel.FK_AspNetUsers_TipoPago" FromRole="AspNetUsers" ToRole="TipoPago" />
           <NavigationProperty Name="ValuesDefaultConcepto" Relationship="expensesModel.FK_ValuesDefaultConcepto_AspNetUsers" FromRole="AspNetUsers" ToRole="ValuesDefaultConcepto" />
+          <NavigationProperty Name="SummaryGastoAcumuladoPorDia" Relationship="expensesModel.FK_SummaryGastoAcumuladoPorDia_AspNetUsers" FromRole="AspNetUsers" ToRole="SummaryGastoAcumuladoPorDia" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -3063,6 +3114,31 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <Property Name="EsRegalo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Tipo_Pago" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="SummaryGastoAcumuladoPorDia">
+          <Key>
+            <PropertyRef Name="idUser" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="DayInYear" />
+          </Key>
+          <Property Name="idUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DayInYear" Type="Int32" Nullable="false" />
+          <Property Name="ItemsComprados" Type="Int32" Nullable="false" />
+          <Property Name="GastoAcumuladoAnual" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="AspNetUsers" Relationship="expensesModel.FK_SummaryGastoAcumuladoPorDia_AspNetUsers" FromRole="SummaryGastoAcumuladoPorDia" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK_SummaryGastoAcumuladoPorDia_AspNetUsers">
+          <End Type="expensesModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="expensesModel.SummaryGastoAcumuladoPorDia" Role="SummaryGastoAcumuladoPorDia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SummaryGastoAcumuladoPorDia">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3640,6 +3716,19 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spGetInfoDiaMaxGastoMes" FunctionName="expensesModel.Store.spGetInfoDiaMaxGastoMes" />
+          <FunctionImportMapping FunctionImportName="spGastosDiarioAcumulados" FunctionName="expensesModel.Store.spGastosDiarioAcumulados" />
+          <EntitySetMapping Name="SummaryGastoAcumuladoPorDia">
+            <EntityTypeMapping TypeName="expensesModel.SummaryGastoAcumuladoPorDia">
+              <MappingFragment StoreEntitySet="SummaryGastoAcumuladoPorDia">
+                <ScalarProperty Name="GastoAcumuladoAnual" ColumnName="GastoAcumuladoAnual" />
+                <ScalarProperty Name="ItemsComprados" ColumnName="ItemsComprados" />
+                <ScalarProperty Name="DayInYear" ColumnName="DayInYear" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spAddSubPrecioGastosAcumulados" FunctionName="expensesModel.Store.spAddSubPrecioGastosAcumulados" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
