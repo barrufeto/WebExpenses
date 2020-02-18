@@ -25,7 +25,27 @@
 <a href='@Url.Action("RptGastoAcumulado", "Chart")'>
     <img src="~/Img/iconos/RptAcumuladoAnual.png" title="@expenses.Resources.Descripciones.RptGastoAnualAcumulado">
 </a>
+
+<a href='@Url.Action("RptGastoTipo", "Chart")'>
+    <img src="~/Img/iconos/RptAcumuladoAnual.png" title="@expenses.Resources.Descripciones.RptGastoAnualAcumulado">
+</a>
 <!--
+<br />
+<br />
+TOP TEN
+<br />
+<br />
+<a href='@Url.Action("RptTopTenSubtipo", "Chart")'>
+    <img src="~/Img/iconos/RptAcumuladoAnual.png" title="@expenses.Resources.Descripciones.RptGastoAnualAcumulado">
+</a>
+    -->
+<!--
+select Concepto, count(*) from gasto
+where idSubTipoGasto = 24 and idUserGasto='beca748b-86ef-4f86-a855-f50fa0f40dec' and YEAR(Fecha)=2020
+group by concepto
+ORDER BY 2 DESC
+
+
 <a href='@Url.Action("RptDiffEntreMeses", "Chart")'>
     <img src="~/Img/iconos/RptGastoMensual.png" title="@expenses.Resources.Descripciones.RptGastoMensualMenu">
 </a>

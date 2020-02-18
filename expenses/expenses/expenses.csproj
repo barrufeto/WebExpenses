@@ -315,6 +315,8 @@
     <Content Include="Views\Chart\RptGastoMensual.cshtml" />
     <Content Include="Views\Chart\RptGastoAcumulado.cshtml" />
     <Content Include="Views\Chart\RptDiffEntreMeses.cshtml" />
+    <Content Include="Views\Chart\RptTopTenSubtipo.cshtml" />
+    <Content Include="Views\Chart\RptGastoTipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
