@@ -20,7 +20,11 @@ namespace experses.Models
         //SubTipus de gasto
         public int _idSelectedTipoGasto { get; set; }
         public IEnumerable<SelectListItem> _TipoGastosTrad { get; set; }
-        public string _DescripcionTipoGasto { get; set; }
+
+        //Grupos de gasto
+        public int _idSelectedGrupoGasto { get; set; }
+        public IEnumerable<SelectListItem> _GrupoGastosTrad { get; set; }
+
 
 
     }

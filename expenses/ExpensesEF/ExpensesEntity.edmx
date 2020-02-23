@@ -125,6 +125,8 @@
           <Property Name="idGrupoGasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar(max)" />
           <Property Name="Activo" Type="bit" />
+          <Property Name="VisibleReports" Type="bit" />
+          <Property Name="idTipoGrupoGasto" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'expenses.dbo.GrupoGastoTextosTraduccion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -2043,6 +2045,8 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <NavigationProperty Name="AspNetUsers" Relationship="expensesModel.FK_AspNetUsers_GrupoGasto" FromRole="GrupoGasto" ToRole="AspNetUsers" />
           <NavigationProperty Name="Gasto" Relationship="expensesModel.FK_Gasto_GrupoGasto" FromRole="GrupoGasto" ToRole="Gasto" />
           <NavigationProperty Name="GrupoGastoTextosTraduccion" Relationship="expensesModel.FK_GrupoGastoTextosTraduccion_GrupoGasto" FromRole="GrupoGasto" ToRole="GrupoGastoTextosTraduccion" />
+          <Property Name="VisibleReports" Type="Boolean" />
+          <Property Name="idTipoGrupoGasto" Type="Int32" />
         </EntityType>
         <EntityType Name="Idiomas">
           <Key>
@@ -3262,6 +3266,8 @@ advertencia 6002: La tabla o vista 'expenses.dbo.vst_InOut' no tiene definida ni
           <EntitySetMapping Name="GrupoGasto">
             <EntityTypeMapping TypeName="expensesModel.GrupoGasto">
               <MappingFragment StoreEntitySet="GrupoGasto">
+                <ScalarProperty Name="idTipoGrupoGasto" ColumnName="idTipoGrupoGasto" />
+                <ScalarProperty Name="VisibleReports" ColumnName="VisibleReports" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="idGrupoGasto" ColumnName="idGrupoGasto" />

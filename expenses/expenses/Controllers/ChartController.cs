@@ -58,7 +58,7 @@ namespace expenses.Controllers
             _codigo = System.Threading.Thread.CurrentThread.CurrentCulture.ToString().Substring(0, 2);
             using (var context = new ExpensesEF.Entities())
             {
-                model._TipoGastosTrad = GetListTipoGastos(context.TipoGastoTextosTraduccion.Where(x => (x.TipoGasto.Activo == true) && (x.idIdioma == context.Idiomas.Where(y => y.codigo == _codigo).FirstOrDefault().idIdioma)).ToList().OrderBy(x => x.Descripcion));
+                model._GrupoGastosTrad = GetListGrupoGastos(context.GrupoGastoTextosTraduccion.Where(x => (x.GrupoGasto.VisibleReports==true) && (x.GrupoGasto.idTipoGrupoGasto==2) && (x.idIdioma == context.Idiomas.Where(y => y.codigo == _codigo).FirstOrDefault().idIdioma)).ToList().OrderBy(x => x.Descripcion));
 
             }
             return View(model);
@@ -120,6 +120,29 @@ namespace expenses.Controllers
             return selectList;
         }
 
+               
+
+        private IEnumerable<SelectListItem> GetListGrupoGastos(IEnumerable<GrupoGastoTextosTraduccion> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<SelectListItem>();
+
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element.idGrupoGasto.ToString(),
+                    Text = element.Descripcion
+                });
+            }
+
+            return selectList;
+        }
+
         private IEnumerable<SelectListItem> GetListTipoGastos(IEnumerable<TipoGastoTextosTraduccion> elements)
             {
                 // Create an empty list to hold result of the operation
@@ -145,41 +168,57 @@ namespace expenses.Controllers
 
         #region "Dades de reports"
 
-        public JsonResult GetResumenTipoGasto(int id)
+        public JsonResult GetResumenTipoGasto( int IdGrupo)
         {
-            int _Cops=0;
             var context = new ExpensesEF.Entities();
             string _User = context.AspNetUsers.Where(x => x.Email == User.Identity.Name).FirstOrDefault().Id.ToString();
-
-            //var datos = context.Gasto.Where(x => x.idUserGasto == _User && x.idTipoGasto == id).GroupBy(y => y.SubTipoGasto).OrderByDescending(y => y.Count()).ToList();
-            var datos = context.SubTipoGasto.Where(x=> x.idTipoGasto == id).ToList();
-
-            //select idSubTipoGasto, sum(precio) from Gasto
-            //where idTipoGasto = 3 and idUserGasto = 'beca748b-86ef-4f86-a855-f50fa0f40dec'
-
             List<object> chartData = new List<object>();
-            chartData.Add(new object[]
-                            {
-                            "Tipo Gasto", "Veces", "Dinero gastado(€)"
-                            });
+            //var datos = context.SubTipoGasto.Where(x=> x.idTipoGasto == id).ToList();
 
 
-            foreach (var Elem in datos)
+            if (IdGrupo == 0)
             {
-                _Cops = context.Gasto.Where(x => x.idSubTipoGasto == Elem.idSubTipoGasto && x.idUserGasto == _User).Count();
+                chartData.Add(new object[]
+                                {
+                            "Grupo Gasto", "Dinero gastado(€)"
+                                });
 
-                if (_Cops>0)
+                var datos = context.Gasto.Where(x => (x.idUserGasto == _User) && (x.GrupoGasto.VisibleReports == true) && (x.GrupoGasto.idTipoGrupoGasto == 2)).GroupBy(y => y.idGrupoGasto).Select(a => new { idGrupoGasto = a.Key, Amount = a.Sum(b => b.Precio) });
+
+
+                foreach (var Elem in datos)
                 {
-                    chartData.Add(new object[]
+                    if (Elem.idGrupoGasto != null)
+                    {
+                        chartData.Add(new object[]
                         {
-                          context.SubTipoGastoTextosTraduccion.Where( x=>x.idSubTipoGasto == Elem.idSubTipoGasto && x.idIdioma==1).FirstOrDefault().Descripcion
-                          ,context.Gasto.Where(x=>x.idSubTipoGasto == Elem.idSubTipoGasto && x.idUserGasto == _User).Count()
-                         ,context.Gasto.Where(x=>x.idSubTipoGasto == Elem.idSubTipoGasto && x.idUserGasto == _User).Sum(y=>y.Precio)
+                          context.GrupoGastoTextosTraduccion.Where( x=>(x.idGrupoGasto == Elem.idGrupoGasto) && (x.idIdioma==1) &&  (x.GrupoGasto.VisibleReports==true) && (x.GrupoGasto.idTipoGrupoGasto==2)).FirstOrDefault().Descripcion, Elem.Amount
+                        });
+                    }
+
+                }
+            }
+            else
+            {
+                chartData.Add(new object[]
+                                {
+                            "Tipo Gasto", "Dinero gastado(€)"
+                                });
+                var datos = context.Gasto.Where(x => x.idUserGasto == _User && x.idGrupoGasto == IdGrupo).GroupBy(y => y.idTipoGasto).Select(a => new { idTipoGasto = a.Key, Amount = a.Sum(b => b.Precio) });
+
+
+                foreach (var Elem in datos)
+                {
+                        chartData.Add(new object[]
+                        {
+                          context.TipoGastoTextosTraduccion.Where( x=>x.idTipoGasto == Elem.idTipoGasto && x.idIdioma==1).FirstOrDefault().Descripcion, Elem.Amount
                         });
                 }
             }
-            return Json(chartData);
 
+
+
+            return Json(chartData);
         }
 
 

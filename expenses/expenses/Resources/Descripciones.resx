@@ -567,4 +567,13 @@
   <data name="RptUltimos12Meses" xml:space="preserve">
     <value>Reports últimos 12 meses</value>
   </data>
+  <data name="GeneraRpt" xml:space="preserve">
+    <value>Generar Report</value>
+  </data>
+  <data name="RptResumenes" xml:space="preserve">
+    <value>Reports Resumen</value>
+  </data>
+  <data name="RptResumenGrupoGasto" xml:space="preserve">
+    <value>Grupo Gasto Viajes</value>
+  </data>
 </root>

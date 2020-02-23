@@ -573,4 +573,13 @@
   <data name="RptUltimos12Meses" xml:space="preserve">
     <value>Last 12-month reports</value>
   </data>
+  <data name="GeneraRpt" xml:space="preserve">
+    <value>Generate Report</value>
+  </data>
+  <data name="RptResumenes" xml:space="preserve">
+    <value>Summary Reports</value>
+  </data>
+  <data name="RptResumenGrupoGasto" xml:space="preserve">
+    <value>Expenses Trips Groups</value>
+  </data>
 </root>

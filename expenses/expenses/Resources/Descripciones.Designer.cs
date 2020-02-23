@@ -439,6 +439,15 @@ namespace expenses.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Generar Report.
+        /// </summary>
+        public static string GeneraRpt {
+            get {
+                return ResourceManager.GetString("GeneraRpt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Gráfico acumulado año actual.
         /// </summary>
         public static string GraficoAnyoActual {
@@ -1335,6 +1344,24 @@ namespace expenses.Resources {
         public static string RptMesEnCurso {
             get {
                 return ResourceManager.GetString("RptMesEnCurso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reports Resumen.
+        /// </summary>
+        public static string RptResumenes {
+            get {
+                return ResourceManager.GetString("RptResumenes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Grupo Gasto Viajes.
+        /// </summary>
+        public static string RptResumenGrupoGasto {
+            get {
+                return ResourceManager.GetString("RptResumenGrupoGasto", resourceCulture);
             }
         }
         

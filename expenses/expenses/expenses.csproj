@@ -244,8 +244,10 @@
     <Content Include="Img\iconos\export_xls.png" />
     <Content Include="Img\iconos\Graph.png" />
     <Content Include="Img\iconos\grey_star24.png" />
+    <Content Include="Img\iconos\group.png" />
     <Content Include="Img\iconos\Money.png" />
     <Content Include="Img\iconos\NewGasto.png" />
+    <Content Include="Img\iconos\Report.png" />
     <Content Include="Img\iconos\RptAcumuladoAnual.png" />
     <Content Include="Img\iconos\RptFinanzas.png" />
     <Content Include="Img\iconos\RptGastoMensual.png" />
